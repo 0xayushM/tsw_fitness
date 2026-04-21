@@ -21,6 +21,7 @@
   --font-display: var(--font-balboa);
   --font-body: var(--font-avalon);
   --font-sans: var(--font-avalon);
+  --font-agharti: var(--font-agharti);
 }
 
 html,
@@ -32,12 +33,16 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-balboa), "Arial Narrow", sans-serif;
+  font-family: var(--font-agharti), "Arial Narrow", sans-serif;
   letter-spacing: 0.01em;
 }
 
 .font-body {
   font-family: var(--font-avalon), Arial, Helvetica, sans-serif;
+}
+
+.font-agharti {
+  font-family: var(--font-agharti), Arial, Helvetica, sans-serif;
 }
 
 .text-stroke {

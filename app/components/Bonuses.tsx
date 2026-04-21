@@ -21,7 +21,7 @@ const BONUSES = [
 export default function Bonuses() {
   return (
     <section className="relative bg-[var(--color-charcoal)] px-5 py-20 sm:px-8 sm:py-28">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-8xl">
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/50">
             / Perks inside /

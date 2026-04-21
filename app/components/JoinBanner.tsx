@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function JoinBanner() {
   return (
     <section className="relative bg-[var(--color-charcoal)] px-5 pb-20 sm:px-8 sm:pb-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white/10">
+      <div className="relative mx-auto max-w-8xl overflow-hidden rounded-3xl border border-white/10">
         <div className="relative aspect-[21/9] w-full">
           <Image
             src="/images/img4.png"
@@ -38,7 +38,7 @@ export default function JoinBanner() {
         </div>
       </div>
 
-      <div className="mx-auto mt-16 flex max-w-6xl flex-wrap items-center justify-between gap-4 text-[10px] uppercase tracking-[0.4em] text-white/50 sm:mt-20 sm:text-xs">
+      <div className="mx-auto mt-16 flex max-w-8xl flex-wrap items-center justify-between gap-4 text-[10px] uppercase tracking-[0.4em] text-white/50 sm:mt-20 sm:text-xs">
         <span>Strength</span>
         <span>Mobility</span>
         <span>Conditioning</span>

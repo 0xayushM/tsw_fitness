@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-[var(--color-charcoal)] px-5 py-12 sm:px-8 sm:py-16">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center">
+      <div className="mx-auto flex max-w-8xl flex-col items-center gap-8 text-center">
         <div className="flex items-center gap-3">
           <span className="relative block h-10 w-10">
             <Image

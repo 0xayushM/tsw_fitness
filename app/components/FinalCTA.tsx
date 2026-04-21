@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function FinalCTA() {
   return (
     <section className="relative overflow-hidden bg-[var(--color-charcoal)] px-5 py-20 sm:px-8 sm:py-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white/10">
+      <div className="relative mx-auto max-w-8xl overflow-hidden rounded-3xl border border-white/10">
         <div className="relative aspect-[5/4] w-full sm:aspect-[16/9]">
           <Image
             src="/images/img2.png"

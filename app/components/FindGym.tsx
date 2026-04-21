@@ -10,7 +10,7 @@ const CLUBS = [
 export default function FindGym() {
   return (
     <section className="relative bg-[var(--color-charcoal)] px-5 py-20 sm:px-8 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
+      <div className="mx-auto grid max-w-8xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
         <div>
           <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/50">
             / On your street /

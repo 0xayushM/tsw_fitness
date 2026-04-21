@@ -21,7 +21,7 @@ export default function Classes() {
       id="classes"
       className="relative overflow-hidden bg-[var(--color-charcoal)] px-5 py-20 sm:px-8 sm:py-28"
     >
-      <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <div className="relative mx-auto grid max-w-8xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
           <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/50">
             / Train with us /

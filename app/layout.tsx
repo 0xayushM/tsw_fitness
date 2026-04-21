@@ -9,6 +9,12 @@ const balboa = localFont({
   display: "swap",
 });
 
+const agharti = localFont({
+  src: "../public/fonts/agharti-black-condensed.ttf",
+  variable: "--font-agharti",
+  display: "swap",
+});
+
 const avalon = localFont({
   src: "../public/fonts/AvalonBold.ttf",
   variable: "--font-avalon",
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${balboa.variable} ${avalon.variable} h-full antialiased`}
+      className={`${balboa.variable} ${agharti.variable} ${avalon.variable} h-full antialiased`}
     >
       <body className="bg-[var(--color-charcoal)] text-[var(--foreground)]">
         <SmoothScroll>{children}</SmoothScroll>
