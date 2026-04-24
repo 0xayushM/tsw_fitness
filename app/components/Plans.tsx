@@ -9,6 +9,8 @@ const PLANS = [
       "Locker & towel service",
       "Body composition scan",
     ],
+    color: "var(--color-teal)",
+    foreground: "#0a0a0a",
     highlight: false,
   },
   {
@@ -21,6 +23,8 @@ const PLANS = [
       "1 PT session / month",
       "Recovery lounge access",
     ],
+    color: "var(--color-red)",
+    foreground: "#ffffff",
     highlight: true,
   },
   {
@@ -33,6 +37,8 @@ const PLANS = [
       "Nutrition playbook",
       "Guest passes x 4",
     ],
+    color: "var(--color-green)",
+    foreground: "#f4f1ea",
     highlight: false,
   },
 ];
@@ -41,17 +47,17 @@ export default function Plans() {
   return (
     <section
       id="membership"
-      className="relative bg-[var(--color-charcoal)] px-5 py-20 sm:px-8 sm:py-28"
+      className="relative bg-[var(--color-charcoal)] px-5 pt-16 pb-20 sm:px-10 sm:pt-20 sm:pb-28"
     >
-      <div className="mx-auto max-w-8xl">
-        <div className="flex flex-col items-center gap-3 text-center">
-          <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/50">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/40">
             / Join TSW /
           </span>
-          <h2 className="font-display text-[14vw] leading-[0.95] tracking-tight text-white sm:text-[72px] lg:text-[96px]">
-            MEMBERSHIP
+          <h2 className="font-display uppercase leading-[0.9] tracking-tight text-white text-[12vw] sm:text-[6.5vw] lg:text-[5vw]">
+            Membership
           </h2>
-          <p className="max-w-xl font-body text-sm leading-relaxed text-white/60">
+          <p className="max-w-xl font-body text-sm leading-relaxed text-white/55">
             Pick the plan that fits your week. Switch any time. No contracts.
           </p>
         </div>
@@ -71,49 +77,61 @@ function PlanCard({
   price,
   frequency,
   perks,
+  color,
+  foreground,
   highlight,
 }: (typeof PLANS)[number]) {
   return (
     <article
-      className={`relative overflow-hidden rounded-2xl border p-6 sm:p-7 ${
-        highlight
-          ? "border-[var(--color-orange)] bg-[linear-gradient(180deg,rgba(237,93,38,0.14),rgba(11,11,12,1)_60%)]"
-          : "border-white/10 bg-[var(--color-charcoal-soft)]"
-      }`}
+      className="group relative flex flex-col overflow-hidden rounded-2xl p-7 transition-transform duration-300 hover:-translate-y-1"
+      style={{ backgroundColor: color, color: foreground }}
     >
-      <div
-        aria-hidden
-        className={`absolute right-0 top-0 h-16 w-16 ${
-          highlight ? "bg-[var(--color-orange)]" : "bg-[var(--color-teal)]"
-        }`}
-        style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
-      />
+      <div className="flex items-center justify-between">
+        <p
+          className="font-body text-[10px] uppercase tracking-[0.4em]"
+          style={{ color: foreground, opacity: 0.75 }}
+        >
+          {tag}
+        </p>
+        <span
+          className="rounded-full border px-2 py-0.5 font-body text-[9px] uppercase tracking-[0.3em]"
+          style={{
+            borderColor: foreground === "#0a0a0a" ? "#0a0a0a33" : "#ffffff33",
+            color: foreground,
+          }}
+        >
+          {highlight ? "Most Chosen" : "Plan"}
+        </span>
+      </div>
 
-      <p className="font-body text-[10px] uppercase tracking-[0.4em] text-white/60">
-        {tag}
-      </p>
-      <div className="mt-6 flex items-end gap-2">
-        <span className="font-display text-6xl leading-none text-white sm:text-7xl">
+      <div className="mt-10 flex items-end gap-2">
+        <span className="font-display text-6xl uppercase leading-[0.9] sm:text-7xl">
           ₹{price}
         </span>
-        <span className="pb-2 font-body text-xs uppercase tracking-[0.3em] text-white/50">
+        <span
+          className="pb-2 font-body text-xs uppercase tracking-[0.3em]"
+          style={{ color: foreground, opacity: 0.6 }}
+        >
           {frequency}
         </span>
       </div>
 
-      <ul className="mt-6 space-y-2 border-t border-white/10 pt-6">
+      <ul
+        className="mt-6 space-y-2 border-t pt-6"
+        style={{
+          borderColor: foreground === "#0a0a0a" ? "#0a0a0a22" : "#ffffff26",
+        }}
+      >
         {perks.map((perk) => (
           <li
             key={perk}
-            className="flex items-center gap-3 font-body text-sm text-white/80"
+            className="flex items-center gap-3 font-body text-sm"
+            style={{ color: foreground, opacity: 0.9 }}
           >
             <span
               aria-hidden
-              className={`inline-block h-1.5 w-1.5 rounded-full ${
-                highlight
-                  ? "bg-[var(--color-orange)]"
-                  : "bg-[var(--color-teal)]"
-              }`}
+              className="inline-block h-1.5 w-1.5 rounded-full"
+              style={{ backgroundColor: foreground }}
             />
             {perk}
           </li>
@@ -122,14 +140,21 @@ function PlanCard({
 
       <a
         href="#top"
-        className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-3 font-body text-[11px] uppercase tracking-[0.3em] transition-colors ${
-          highlight
-            ? "bg-[var(--color-orange)] text-white hover:bg-[#ff6a34]"
-            : "border border-white/15 text-white/80 hover:border-[var(--color-orange)] hover:text-white"
-        }`}
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-3 font-body text-[11px] uppercase tracking-[0.3em] transition-colors"
+        style={{
+          borderColor: foreground === "#0a0a0a" ? "#0a0a0a" : foreground,
+          backgroundColor: foreground === "#0a0a0a" ? "#0a0a0a" : "transparent",
+          color: foreground === "#0a0a0a" ? color : foreground,
+        }}
       >
         Choose {tag}
-        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-current" />
+        <span
+          aria-hidden
+          className="h-1.5 w-1.5 rounded-full"
+          style={{
+            backgroundColor: foreground === "#0a0a0a" ? color : foreground,
+          }}
+        />
       </a>
     </article>
   );

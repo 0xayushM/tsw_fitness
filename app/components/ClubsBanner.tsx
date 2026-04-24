@@ -11,7 +11,7 @@ export default function ClubsBanner() {
   return (
     <section
       id="clubs"
-      className="relative overflow-hidden border-y border-white/10 bg-[var(--color-charcoal)] py-10 sm:py-16"
+      className="relative overflow-hidden border-y border-white/10 bg-[var(--color-charcoal)] py-10 sm:py-14"
     >
       <MarqueeRow stroke />
       <div className="h-3 sm:h-5" />
@@ -41,14 +41,14 @@ function MarqueeRow({
               stroke
                 ? "text-stroke text-white"
                 : text.includes("45")
-                  ? "text-[var(--color-orange)]"
+                  ? "text-[var(--color-gold)]"
                   : "text-white"
             }`}
           >
             {text}
             <span
               aria-hidden
-              className="mx-6 inline-block h-3 w-3 translate-y-[-1em] rounded-full bg-[var(--color-orange)] align-middle sm:h-4 sm:w-4"
+              className="mx-6 inline-block h-3 w-3 translate-y-[-1em] rounded-full bg-[var(--color-gold)] align-middle sm:h-4 sm:w-4"
             />
           </span>
         ))}

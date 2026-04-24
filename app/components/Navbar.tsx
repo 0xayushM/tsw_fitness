@@ -2,41 +2,43 @@ import Image from "next/image";
 import SplitHover from "./SplitHover";
 
 const LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Classes", href: "#classes" },
-  { label: "Membership", href: "#membership" },
+  { label: "Experience", href: "#about" },
+  { label: "Series", href: "#classes" },
+  { label: "Machines", href: "#membership" },
   { label: "Clubs", href: "#clubs" },
 ];
 
 export default function Navbar() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
-      <nav className="mx-auto flex max-w-8xl items-center justify-between px-5 py-4 sm:px-8 sm:py-6">
-        <a href="#top" className="flex items-center gap-0">
-          <span className="font-display font-bold text-2xl tracking-[0.25em] text-white md:text-2xl lg:text-3xl">
-            <SplitHover>TSW</SplitHover>
-          </span>
-          <span className="relative block h-10 w-10 sm:h-12  sm:w-12">
+    <header className="fixed inset-x-0 top-0 z-40">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/85 via-black/55 to-transparent" />
+
+      <nav className="relative mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 sm:px-10 sm:py-5">
+        <a href="#top" className="flex items-center gap-2">
+          <span className="relative block h-8 w-8 sm:h-9 sm:w-9">
             <Image
               src="/logo.png"
-              alt="TSW Fitness logo"
+              alt="TSW Fitness"
               fill
-              sizes="48px"
+              sizes="36px"
               className="object-contain"
               priority
             />
           </span>
-          <span className="font-display font-bold text-[var(--color-orange)] text-2xl tracking-[0.25em] md:text-2xl lg:text-3xl">
-            <SplitHover>FITNESS</SplitHover>
+          <span className="font-display text-xl tracking-[0.18em] text-white sm:text-2xl">
+            <SplitHover>TSW</SplitHover>
+            <span className="text-[var(--color-gold)]">
+              <SplitHover>FITNESS</SplitHover>
+            </span>
           </span>
         </a>
 
-        <ul className="hidden items-center gap-8 rounded-full border border-white/20 bg-black/50 justify-center py-2 px-16 md:flex">
+        <ul className="hidden items-center gap-10 md:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-display font-medium flex items-center justify-center pb-1 text-2xl md:text-2xl lg:text-3xl uppercase tracking-[0.3em] text-white transition-colors duration-300 hover:text-[var(--color-orange)]"
+                className="font-body text-[11px] uppercase tracking-[0.4em] text-white/80 transition-colors duration-300 hover:text-[var(--color-gold)]"
               >
                 <SplitHover>{link.label}</SplitHover>
               </a>
@@ -44,18 +46,34 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#membership"
-          className="group relative inline-flex items-center overflow-hidden rounded-full px-4 py-2 font-display font-bold text-2xl uppercase tracking-[0.25em] text-[var(--color-orange)] sm:px-5 md:px-8 sm:py-2 md:text-2xl lg:text-2xl"
-        >
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -translate-x-[101%] rounded-full bg-[var(--color-orange)] transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0"
-          />
-          <span className="relative z-10 transition-colors duration-500 group-hover:text-white pb-1">
-            <SplitHover>Join Now{" "}[+]</SplitHover>
-          </span>
-        </a>
+        <div className="flex items-center gap-3 sm:gap-5">
+          <button
+            aria-label="Search"
+            className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-white sm:flex"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          </button>
+          <a
+            href="#membership"
+            className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:px-5"
+          >
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]"
+            />
+            <SplitHover>Join Now</SplitHover>
+          </a>
+        </div>
       </nav>
     </header>
   );

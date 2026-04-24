@@ -7,6 +7,7 @@ import ClubsBanner from "./components/ClubsBanner";
 import Bonuses from "./components/Bonuses";
 import Plans from "./components/Plans";
 import FindGym from "./components/FindGym";
+import Contact from "./components/Contact";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 
@@ -23,7 +24,8 @@ export default function Home() {
         <Bonuses />
         <Plans />
         <FindGym />
-        <FinalCTA />
+        <Contact />
+        {/* <FinalCTA /> */}
       </main>
       <Footer />
     </div>

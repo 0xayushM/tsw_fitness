@@ -1,13 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0b0c;
-  --foreground: #f5f5f5;
-  --color-charcoal: #0b0b0c;
-  --color-charcoal-soft: #151517;
+  --background: #0a0a0a;
+  --foreground: #f4f1ea;
+
+  /* Base */
+  --color-charcoal: #0a0a0a;
+  --color-charcoal-soft: #141414;
+  --color-ink: #1a1a1a;
+  --color-bone: #f4f1ea;
+
+  /* Brand (kept for continuity) */
   --color-orange: #ED5D26;
   --color-blue: #30328A;
-  --color-teal: #2EA9BC;
+
+  /* Buckler-inspired "series" palette */
+  --color-teal: #4BB8BD;
+  --color-cream: #E5DFCF;
+  --color-red: #B83E2F;
+  --color-green: #224B3A;
+  --color-gold: #F4D03F;
+  --color-steel: #8c8f93;
 }
 
 @theme inline {
@@ -15,13 +28,20 @@
   --color-foreground: var(--foreground);
   --color-charcoal: var(--color-charcoal);
   --color-charcoal-soft: var(--color-charcoal-soft);
+  --color-ink: var(--color-ink);
+  --color-bone: var(--color-bone);
   --color-brand-orange: var(--color-orange);
   --color-brand-blue: var(--color-blue);
   --color-brand-teal: var(--color-teal);
+  --color-brand-cream: var(--color-cream);
+  --color-brand-red: var(--color-red);
+  --color-brand-green: var(--color-green);
+  --color-brand-gold: var(--color-gold);
   --font-display: var(--font-balboa);
   --font-body: var(--font-avalon);
   --font-sans: var(--font-avalon);
   --font-agharti: var(--font-agharti);
+  --font-britanica: var(--font-britanica);
 }
 
 html,
@@ -34,7 +54,7 @@ body {
 
 .font-display {
   font-family: var(--font-agharti), "Arial Narrow", sans-serif;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
 .font-body {
@@ -45,18 +65,58 @@ body {
   font-family: var(--font-agharti), Arial, Helvetica, sans-serif;
 }
 
+.font-balboa {
+  font-family: var(--font-balboa), "Arial Narrow", sans-serif;
+}
+
+.font-britanica {
+  font-family: var(--font-britanica), "Times New Roman", serif;
+}
+
 .text-stroke {
   -webkit-text-stroke: 1.5px currentColor;
   color: transparent;
 }
 
+.text-stroke-thin {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+/* Metallic chrome text treatment (used for the robot-feature title) */
+.text-chrome {
+  background: linear-gradient(
+    180deg,
+    #f7f7f7 0%,
+    #b9b9b9 28%,
+    #3b3b3b 52%,
+    #d9d9d9 72%,
+    #737373 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Honeycomb hex pattern background */
+.bg-honeycomb {
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(244, 208, 63, 0.18),
+      transparent 55%
+    ),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='64' viewBox='0 0 56 64'><g fill='none' stroke='%23f4d03f' stroke-opacity='0.25' stroke-width='1.2'><polygon points='28,2 54,17 54,47 28,62 2,47 2,17'/></g></svg>");
+  background-size: auto, 56px 64px;
+  background-position: center, center;
+}
+
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .animate-marquee {
@@ -67,14 +127,18 @@ body {
   animation: marquee 32s linear infinite reverse;
 }
 
-::selection {
-  background: var(--color-orange);
-  color: #fff;
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
 }
 
-/* ScrollSmoother will set its own positioning once mounted on the client;
-   this ensures the wrapper/content render full-width before hydration
-   without imposing overflow: hidden on users with JS disabled or reduced motion. */
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+::selection {
+  background: var(--color-gold);
+  color: #0a0a0a;
+}
+
 #smooth-wrapper,
 #smooth-content {
   width: 100%;

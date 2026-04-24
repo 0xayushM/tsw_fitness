@@ -1,47 +1,15 @@
 import SplitReveal from "./SplitReveal";
-import SplitHover from "./SplitHover";
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[var(--color-charcoal)] pt-28 pt-36 lg:pt-48"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[var(--color-charcoal)]"
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-8xl flex-col items-center px-5 sm:px-8">
-        <h1 className="font-display font-bold text-center uppercase leading-[1] tracking-wider text-[16vw] md:text-[13vw]">
-          <span className="block text-white">
-            {/*
-              `inline-block` wrapper sizes itself to the rendered text so the
-              strike-through bar below spans exactly the text width (and not
-              the full centered block).
-            */}
-            <span className="relative inline-block">
-              <SplitReveal
-                mode="chars"
-                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
-              >
-                Stronger Every Day
-              </SplitReveal>
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-3/5 h-[1vw] -translate-y-1/2 bg-black"
-              />
-            </span>
-          </span>
-          <span className="block text-[var(--color-orange)]">
-            <SplitReveal
-              delay={0.3}
-              mode="chars"
-              config={{ chars: { duration: 0.5, stagger: 0.03 } }}
-            >
-              No Excuses
-            </SplitReveal>
-          </span>
-        </h1>
-      </div>
-      <div className="relative z-0 -mt-[5vw] flex-1 w-full overflow-hidden">
+      {/* Full-bleed background video */}
+      <div className="absolute inset-0 z-0">
         <video
-          className="h-[70vh] md:h-full w-full object-cover"
+          className="h-full w-full object-cover"
           src="/video/heroi.mp4"
           autoPlay
           muted
@@ -50,6 +18,82 @@ export default function Hero() {
           preload="auto"
           aria-hidden="true"
         />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,transparent_0%,rgba(0,0,0,0.55)_60%,rgba(0,0,0,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black" />
+      </div>
+
+      {/* Top-left title block — the Buckler hero positioning */}
+      <div className="relative z-10 flex flex-1 flex-col justify-between px-5 pt-32 pb-10 sm:px-10 sm:pt-40 sm:pb-16">
+        <div className="max-w-full">
+          <span className="inline-flex items-center gap-2 font-body text-[10px] uppercase tracking-[0.45em] text-[var(--color-gold)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />
+            TSW / Fitness Club
+          </span>
+          <h1 className="mt-6 font-display uppercase leading-[1] tracking-tight text-white text-[13vw] sm:text-[9vw] lg:text-[7.2vw]">
+            <span className="block">
+              <SplitReveal
+                mode="chars"
+                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
+              >
+                Make Your
+              </SplitReveal>
+            </span>
+            <span className="block">
+              <SplitReveal
+                delay={0.2}
+                mode="chars"
+                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
+              >
+                Body Unparalleled
+              </SplitReveal>
+            </span>
+          </h1>
+          <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-white/70">
+            High-energy training built for real results. 45-minute classes,
+            world-class equipment, coaches who know your name — across four
+            clubs, every single day.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href="#membership"
+              className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-5 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-black transition-transform hover:-translate-y-0.5"
+            >
+              Start Training
+              <span
+                aria-hidden
+                className="inline-block h-1.5 w-1.5 rounded-full bg-black"
+              />
+            </a>
+            <a
+              href="#classes"
+              className="inline-flex items-center gap-3 rounded-full border border-white/25 px-5 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white/80 backdrop-blur transition-colors hover:border-white hover:text-white"
+            >
+              Our Series
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom-right meta like Buckler's "awwwards" badge */}
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-6">
+          <div className="flex flex-col gap-2">
+            <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/50">
+              Scroll
+            </span>
+            <span
+              aria-hidden
+              className="h-10 w-px bg-gradient-to-b from-white/60 to-transparent"
+            />
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <span className="font-display text-2xl uppercase tracking-[0.12em] text-[var(--color-gold)]">
+              4 Clubs · 12 Disciplines
+            </span>
+            <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/50">
+              Est. 2014 · Open 24/7
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
