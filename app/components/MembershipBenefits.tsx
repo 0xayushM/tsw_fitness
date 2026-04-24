@@ -26,9 +26,14 @@ export default function MembershipBenefits() {
           <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/40">
             / TSW Fitness /
           </span>
-          <h2 className="font-display uppercase leading-[0.9] tracking-tight text-white text-[12vw] sm:text-[6.5vw] lg:text-[5vw]">
-            A Complete Experience
-          </h2>
+          <div className="flex flex-col w-full">
+            <h2 className="font-display uppercase text-left leading-[0.9] tracking-tight text-white text-[12vw] sm:text-[6.5vw] lg:text-[13vw]">
+              MEMBERSHIP
+            </h2>
+            <h2 className="font-display uppercase text-right leading-[0.9] tracking-tight text-white text-[12vw] sm:text-[6.5vw] lg:text-[13vw]">
+              WITH <span className="font-britanica">X</span>  <span className="text-[var(--color-gold)]">BEST BENEFITS</span>
+            </h2>
+          </div>
         </div>
 
         {/* Small experience cards like Buckler's 'Complete Experience' row */}
