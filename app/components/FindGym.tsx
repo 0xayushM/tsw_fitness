@@ -39,13 +39,13 @@ export default function FindGym() {
         {/* Hero club image (like the machine showcase in Buckler) */}
         <div className="relative mx-auto mt-12 max-w-5xl">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/10 bg-black">
-            <Image
+            {/* <Image
               src="/images/img6.png"
               alt="TSW Downtown Club"
               fill
               sizes="(min-width: 1024px) 960px, 100vw"
               className="object-cover opacity-90"
-            />
+            /> */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.6)_75%)]" />
 
             {[
