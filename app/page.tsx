@@ -18,7 +18,7 @@ export default function Home() {
       <main className="flex flex-1 flex-col">
         <Hero />
         <MembershipBenefits />
-        <JoinBanner />
+        {/* <JoinBanner /> */}
         <Classes />
         <ClubsBanner />
         <Bonuses />

@@ -42,6 +42,7 @@
   --font-sans: var(--font-avalon);
   --font-agharti: var(--font-agharti);
   --font-britanica: var(--font-britanica);
+  --font-rama-gothic: var(--font-rama-gothic);
 }
 
 html,
@@ -53,7 +54,7 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-agharti), "Arial Narrow", sans-serif;
+  font-family: var(--font-balboa), "Arial Narrow", sans-serif;
   letter-spacing: 0.005em;
 }
 

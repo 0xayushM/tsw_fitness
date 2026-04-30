@@ -16,6 +16,12 @@ const agharti = localFont({
   display: "swap",
 });
 
+const ramaGothic = localFont({
+  src: "../public/fonts/rama-gothic.otf",
+  variable: "--font-rama-gothic",
+  display: "swap",
+});
+
 const avalon = localFont({
   src: "../public/fonts/AvalonBold.ttf",
   variable: "--font-avalon",

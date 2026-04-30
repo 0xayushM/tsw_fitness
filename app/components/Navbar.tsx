@@ -25,7 +25,7 @@ export default function Navbar() {
               priority
             />
           </span>
-          <span className="font-display text-xl tracking-[0.18em] text-white sm:text-2xl">
+          <span className="font-display text-2xl tracking-tighter text-white sm:text-2xl">
             <SplitHover>TSW</SplitHover>
             <span className="text-[var(--color-gold)]">
               <SplitHover>FITNESS</SplitHover>
@@ -47,22 +47,6 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3 sm:gap-5">
-          <button
-            aria-label="Search"
-            className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-white sm:flex"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m20 20-3.5-3.5" />
-            </svg>
-          </button>
           <a
             href="#membership"
             className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:px-5"
