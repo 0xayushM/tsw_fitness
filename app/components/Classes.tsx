@@ -1,4 +1,6 @@
 import Image from "next/image";
+import SplitReveal from "./SplitReveal";
+import SplitHover from "./SplitHover";
 
 const CLASSES = [
   { name: "TFC", duration: "45 MIN" },
@@ -32,28 +34,28 @@ const SERIES: Series[] = [
     tag: "01",
     copy: "Engine-building sessions designed to raise your output without burning you out. Climbers, rowers, bikes — programmed with intention.",
     cta: "See the Cardio Series",
-    image: "/images/img1.png",
-    bg: "var(--color-teal)",
-    fg: "#0a0a0a",
-    accent: "#0a0a0a",
+    image: "/images/cardio.jpg",
+    bg: "#76767663",
+    fg: "#ffffff",
+    accent: "#ffffff",
   },
   {
     name: "Duet Series",
     tag: "02",
     copy: "Train with a partner. Shared timers, mirrored movements, zero excuses. Sessions built for two bodies, one goal.",
     cta: "Discover the Duet Series",
-    image: "/images/img3.png",
-    bg: "var(--color-cream)",
-    fg: "#0a0a0a",
-    accent: "#0a0a0a",
+    image: "/images/duet.jpg",
+    bg: "#76767663",
+    fg: "#ffffff",
+    accent: "#ffffff",
   },
   {
     name: "Prime Series",
     tag: "03",
     copy: "Heavy, deliberate strength work. Progressive overload under a coach's eye — the way you always wanted to lift.",
     cta: "Step into the Prime Series",
-    image: "/images/img2.png",
-    bg: "var(--color-red)",
+    image: "/images/prime.jpg",
+    bg: "#76767663",
     fg: "#ffffff",
     accent: "#ffffff",
   },
@@ -62,10 +64,10 @@ const SERIES: Series[] = [
     tag: "04",
     copy: "Open-gym programming for members who want total freedom — with a written plan waiting when you arrive.",
     cta: "Explore the Infinite Series",
-    image: "/images/img5.png",
-    bg: "var(--color-green)",
-    fg: "#f4f1ea",
-    accent: "#f4d03f",
+    image: "/images/infinite.jpg",
+    bg: "#76767663",
+    fg: "#ffffff",
+    accent: "#ffffff",
   },
 ];
 
@@ -91,13 +93,31 @@ export default function Classes() {
           <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/40">
             / Our Series /
           </span>
-          <h2 className="font-display uppercase leading-[0.9] tracking-tight text-white text-[11vw] sm:text-[6vw] lg:text-[4.4vw]">
-            Transform the way you train
-          </h2>
+          <h1 className="mt-6 font-display uppercase tracking-tight text-white text-7xl md:text-8xl lg:text-[12vw]">
+            <span className="block flex items-center">
+              <SplitReveal
+                mode="chars"
+                triggerOnScroll
+                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
+              >
+                Transform the way
+              </SplitReveal>
+            </span>
+            <span className="block leading-[1] -mt-1 md:-mt-4 text-[var(--color-gold)]">
+              <SplitReveal
+                delay={0.2}
+                mode="chars"
+                triggerOnScroll
+                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
+              >
+                You train
+              </SplitReveal>
+            </span>
+          </h1>
         </div>
 
-        {/* Colored series cards — the Buckler centerpiece */}
-        <div className="mt-14 flex flex-col gap-6">
+        {/* Colored series cards — 2×2 grid with image-as-background */}
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
           {SERIES.map((s) => (
             <SeriesCard key={s.name} {...s} />
           ))}
@@ -150,14 +170,35 @@ export default function Classes() {
 function SeriesCard({ name, tag, copy, cta, image, bg, fg, accent }: Series) {
   return (
     <article
-      className="group relative grid overflow-hidden rounded-2xl sm:grid-cols-[1.25fr_1fr]"
+      className="group relative overflow-hidden rounded-2xl aspect-[5/4] sm:aspect-[6/5] lg:aspect-[7/5]"
       style={{ backgroundColor: bg, color: fg }}
     >
-      <div className="relative flex flex-col justify-between gap-8 p-6 sm:p-10">
+      {/* Full-bleed background image */}
+      <Image
+        src={image}
+        alt={name}
+        fill
+        sizes="(min-width: 640px) 50vw, 100vw"
+        className="absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+
+      {/* Left-to-right gradient: dark on the left where the copy sits,
+          fading to transparent on the right so the image reads through. */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 90%)",
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative flex h-full flex-col justify-between gap-6 p-6 sm:p-8">
         <div className="flex items-start justify-between">
           <span
             className="font-body text-[10px] uppercase tracking-[0.4em]"
-            style={{ color: fg, opacity: 0.7 }}
+            style={{ color: fg, opacity: 0.75 }}
           >
             Series · {tag}
           </span>
@@ -168,13 +209,13 @@ function SeriesCard({ name, tag, copy, cta, image, bg, fg, accent }: Series) {
           />
         </div>
 
-        <div>
-          <h3 className="font-display uppercase leading-[0.9] tracking-tight text-[10vw] sm:text-[5.5vw] lg:text-[4vw]">
-            {name}
+        <div className="max-w-[70%] sm:max-w-[60%]">
+          <h3 className="font-display uppercase leading-[0.9] tracking-tight text-[9vw] sm:text-[4.5vw] lg:text-[3vw]">
+            <SplitHover>{name}</SplitHover>
           </h3>
           <p
-            className="mt-4 max-w-md font-body text-sm leading-relaxed"
-            style={{ color: fg, opacity: 0.8 }}
+            className="mt-3 font-body text-sm leading-relaxed"
+            style={{ color: fg, opacity: 0.85 }}
           >
             {copy}
           </p>
@@ -183,33 +224,15 @@ function SeriesCard({ name, tag, copy, cta, image, bg, fg, accent }: Series) {
         <a
           href="#membership"
           className="inline-flex w-fit items-center gap-3 rounded-full border px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] transition-colors"
-          style={{ borderColor: `${accent}40`, color: fg }}
+          style={{ borderColor: `${accent}66`, color: fg }}
         >
-          {cta}
+          <SplitHover>{cta}</SplitHover>
           <span
             aria-hidden
             className="inline-block h-1.5 w-1.5 rounded-full"
             style={{ backgroundColor: accent }}
           />
         </a>
-      </div>
-
-      <div className="relative min-h-[260px] sm:min-h-[320px]">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          sizes="(min-width: 640px) 45vw, 100vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(0,0,0,0.1) 0%, transparent 40%)",
-          }}
-        />
       </div>
     </article>
   );
