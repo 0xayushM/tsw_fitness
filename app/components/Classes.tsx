@@ -1,20 +1,79 @@
 import Image from "next/image";
 import SplitReveal from "./SplitReveal";
 import SplitHover from "./SplitHover";
+import ClassesList, { type ClassItem } from "./ClassesList";
 
-const CLASSES = [
-  { name: "TFC", duration: "45 MIN" },
-  { name: "PT / Personal", duration: "60 MIN" },
-  { name: "Couples", duration: "45 MIN" },
-  { name: "Move Body", duration: "50 MIN" },
-  { name: "Bootcamp", duration: "45 MIN" },
-  { name: "Body Shift", duration: "45 MIN" },
-  { name: "Yoga", duration: "60 MIN" },
-  { name: "Pilates", duration: "45 MIN" },
-  { name: "Box Fit", duration: "45 MIN" },
-  { name: "Spin Ride", duration: "45 MIN" },
-  { name: "HIIT", duration: "30 MIN" },
-  { name: "Barre", duration: "45 MIN" },
+const CLASSES: ClassItem[] = [
+  {
+    name: "Strength Training",
+    goal: "Build Muscle",
+    duration: "60 MIN",
+    membership: "Exclusive",
+    image: "/images/strength_training.jpg",
+  },
+  {
+    name: "Crossfit Training",
+    goal: "Burn Fat",
+    duration: "60 MIN",
+    membership: "Exclusive",
+    image: "/images/crossfit.jpg",
+  },
+  {
+    name: "MMA",
+    goal: "Get Stronger",
+    duration: "60 MIN",
+    membership: "Premium",
+    image: "/images/mma.jpg",
+  },
+  {
+    name: "Sport Training",
+    goal: "Performance",
+    duration: "60 MIN",
+    membership: "Exclusive",
+    image: "/images/sport_training.jpg",
+  },
+  {
+    name: "Yoga",
+    goal: "Mobility",
+    duration: "60 MIN",
+    membership: "Super",
+    image: "/images/yoga.jpg",
+  },
+  {
+    name: "HIIT",
+    goal: "Burn Fat",
+    duration: "30 MIN",
+    membership: "Premium",
+    image: "/images/hiit.jpg",
+  },
+  {
+    name: "Dance Classes",
+    goal: "Move Better",
+    duration: "45 MIN",
+    membership: "Super",
+    image: "/images/dance.jpg",
+  },
+  {
+    name: "Muscle Endurance",
+    goal: "Stamina",
+    duration: "45 MIN",
+    membership: "Premium",
+    image: "/images/muscle_endurance.jpg",
+  },
+  {
+    name: "Aerobic",
+    goal: "Cardio Base",
+    duration: "45 MIN",
+    membership: "Super",
+    image: "/images/aerobic.jpg",
+  },
+  {
+    name: "Endurance Training",
+    goal: "Go Longer",
+    duration: "60 MIN",
+    membership: "Exclusive",
+    image: "/images/endurance.jpg",
+  },
 ];
 
 type Series = {
@@ -123,44 +182,28 @@ export default function Classes() {
           ))}
         </div>
 
-        {/* Our Machines / Classes list */}
-        <div className="mt-20 grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start lg:gap-16">
-          <div>
-            <span className="font-body text-[10px] uppercase tracking-[0.4em] text-white/40">
-              / Our Classes /
+        {/* Our Classes — headline left, bracketed blurb top-right */}
+        <div className="mt-24 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-16">
+          <h3 className="font-display uppercase leading-[0.85] tracking-tight text-white text-[18vw] sm:text-[14vw] lg:text-[11vw]">
+            Our Classes
+          </h3>
+          <p className="flex max-w-xs items-start gap-2 font-body text-xs leading-relaxed text-white/70 lg:pt-4">
+            <span aria-hidden className="font-display text-white/50">
+              [
             </span>
-            <h3 className="mt-3 font-display text-[11vw] uppercase leading-[0.9] tracking-tight text-white sm:text-[56px] lg:text-[72px]">
-              Twelve disciplines,
-              <span className="block text-[var(--color-gold)]">one pass.</span>
-            </h3>
-            <p className="mt-5 max-w-sm font-body text-sm leading-relaxed text-white/55">
+            <span>
               Coaches trained in-house. Programming refreshed every six weeks.
               Pick what fits today — every class, every club, every time.
-            </p>
-          </div>
+            </span>
+            <span aria-hidden className="font-display text-white/50">
+              ]
+            </span>
+          </p>
+        </div>
 
-          <ul className="divide-y divide-white/10 border-y border-white/10">
-            {CLASSES.map((c, i) => (
-              <li
-                key={c.name}
-                className="group flex items-center justify-between py-3.5 transition-colors hover:bg-white/[0.02]"
-              >
-                <span className="flex items-center gap-4 font-display text-xl uppercase tracking-wide text-white sm:text-2xl">
-                  <span className="w-8 font-body text-[10px] tracking-[0.3em] text-white/35">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {c.name}
-                </span>
-                <span className="flex items-center gap-3 font-body text-[10px] uppercase tracking-[0.35em] text-white/50 transition-colors group-hover:text-[var(--color-gold)]">
-                  {c.duration}
-                  <span
-                    aria-hidden
-                    className="h-1.5 w-1.5 rounded-full bg-white/35 transition-colors group-hover:bg-[var(--color-gold)]"
-                  />
-                </span>
-              </li>
-            ))}
-          </ul>
+        {/* Full-width interactive list with slide-from-top hover + cursor image */}
+        <div className="mt-12 lg:mt-16">
+          <ClassesList items={CLASSES} />
         </div>
       </div>
     </section>

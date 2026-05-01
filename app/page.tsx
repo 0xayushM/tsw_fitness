@@ -21,11 +21,11 @@ export default function Home() {
         <MembershipBenefits />
         {/* <JoinBanner /> */}
         <Classes />
-        <ClubsBanner />
-        <Bonuses />
+        {/* <ClubsBanner /> */}
+        {/* <Bonuses /> */}
         <Plans />
         <Giant />
-        <FindGym />
+        {/* <FindGym /> */}
         <Contact />
         {/* <FinalCTA /> */}
       </main>

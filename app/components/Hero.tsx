@@ -24,7 +24,7 @@ export default function Hero() {
       </div>
 
       {/* Top-left title block — the Buckler hero positioning */}
-      <div className="relative z-10 flex flex-1 flex-col justify-end md:justify-between px-5 pt-32 pb-10 sm:px-10 sm:pt-40 sm:pb-16">
+      <div className="relative z-10 flex flex-1 flex-col justify-end md:justify-end px-5 pt-32 pb-10 sm:px-10 sm:pt-40 sm:pb-16">
         <div className="max-w-full">
           <span className="inline-flex items-center gap-2 font-body text-[10px] uppercase tracking-[0.45em] text-[var(--color-gold)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />

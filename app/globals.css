@@ -19,10 +19,10 @@
   --color-cream: #E5DFCF;
   --color-red: #B83E2F;
   --color-green: #224B3A;
-  --color-gold: #F4D03F;
+  /* --color-gold: #F4D03F; */
+  --color-gold: #ED5D26;
   --color-steel: #8c8f93;
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

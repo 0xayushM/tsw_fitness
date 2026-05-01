@@ -20,8 +20,8 @@ export default function Giant() {
         {/* Shader backdrop */}
         <div className="absolute inset-0">
           <MagicRings
-            color="#F4D03F"
-            colorTwo="#F4D03F"
+            color="#ff7a45"
+            colorTwo="#ff743c"
             ringCount={7}
             speed={1}
             attenuation={10}
