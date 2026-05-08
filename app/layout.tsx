@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import HashLinkRouter from "./components/HashLinkRouter";
+import Loader from "./components/Loader";
 
 const balboa = localFont({
   src: "../public/fonts/balboa-condensed.otf",
@@ -51,6 +52,7 @@ export default function RootLayout({
       className={`${balboa.variable} ${agharti.variable} ${avalon.variable} ${britanica.variable} h-full antialiased`}
     >
       <body className="bg-[var(--color-charcoal)] text-[var(--foreground)]">
+        <Loader />
         <HashLinkRouter />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

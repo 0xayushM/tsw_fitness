@@ -184,8 +184,13 @@ export default function Classes() {
 
         {/* Our Classes — headline left, bracketed blurb top-right */}
         <div className="mt-24 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-16">
-          <h3 className="font-display uppercase leading-[0.85] tracking-tight text-white text-[18vw] sm:text-[14vw] lg:text-[11vw]">
+          <h3 className="font-display uppercase tracking-tight text-white text-[18vw] sm:text-[14vw] lg:text-[11vw]">
+          <SplitReveal
+                mode="chars"
+                config={{ chars: { duration: 0.8, stagger: 0.03 } }}
+              >
             Our Classes
+            </SplitReveal>
           </h3>
           <p className="flex max-w-xs items-start gap-2 font-body text-xs leading-relaxed text-white/70 lg:pt-4">
             <span aria-hidden className="font-display text-white/50">

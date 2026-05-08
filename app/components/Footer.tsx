@@ -4,20 +4,20 @@ const COL_A = [
   { label: "Experience", href: "#about" },
   { label: "Series", href: "#classes" },
   { label: "Machines", href: "#membership" },
-  { label: "Clubs", href: "#clubs" },
+  { label: "Contact", href: "#contact" },
 ];
 
-const COL_B = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Cookie Policy", href: "#" },
-  { label: "Imprint", href: "#" },
-  { label: "Contact", href: "mailto:hello@tswfitness.com" },
-];
+// const COL_B = [
+//   // { label: "Privacy Policy", href: "#" },
+//   // { label: "Cookie Policy", href: "#" },
+//   // // { label: "Imprint", href: "#" },
+//   // { label: "Contact", href: "mailto:hello@tswfitness.com" },
+// ];
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[var(--color-charcoal)]">
-      <div className="mx-auto max-w-[1600px] px-5 pt-14 sm:px-10 sm:pt-20">
+      <div className="mx-auto max-w-[1600px] px-5 py-8 sm:px-10 sm:py-12">
         <div className="grid gap-10 sm:grid-cols-[1fr_auto_auto] sm:items-start">
           <div className="flex items-center gap-3">
             <span className="relative block h-10 w-10">
@@ -52,7 +52,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-white/40">
               Legal
             </p>
@@ -68,7 +68,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[0.35em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
@@ -81,14 +81,14 @@ export default function Footer() {
       </div>
 
       {/* Giant brand wordmark */}
-      <div className="relative -mb-[2vw] mt-10 overflow-hidden px-2 sm:px-4">
+      {/* <div className="relative -mb-[2vw] mt-10 overflow-hidden px-2 sm:px-4">
         <p
           aria-hidden
           className="font-display text-center uppercase leading-[0.8] tracking-[-0.02em] text-white select-none text-[24vw]"
         >
           TSW<span className="text-[var(--color-gold)]">FITNESS</span>
         </p>
-      </div>
+      </div> */}
     </footer>
   );
 }

@@ -46,14 +46,15 @@ export default function Giant() {
 
         {/* Headings overlay — pointer-events-none so the canvas underneath
             still receives hover/click for parallax + burst effects. */}
-        <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-4 px-5 text-center">
-          
-          <h2 className="text-chrome font-display uppercase tracking-tight text-[16vw] sm:text-[11vw] lg:text-[9vw]">
-            The Second
-          </h2>
-          <h2 className="text-chrome -mt-24 font-display uppercase tracking-tight text-[16vw] sm:text-[11vw] lg:text-[9vw]">
-            Wind
-          </h2>
+        <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-6 px-5 text-center">
+          <div className="flex flex-col items-center">
+            <h2 className="text-chrome font-display uppercase tracking-tight text-[16vw] sm:text-[11vw] lg:text-[9vw]">
+              The Second
+            </h2>
+            <h2 className="text-chrome leading-[0.9] font-display uppercase tracking-tight text-[16vw] sm:text-[11vw] lg:text-[9vw]">
+              Wind
+            </h2>
+          </div>
           <p className="font-body text-[11px] uppercase tracking-[0.4em] text-white/70">
             Meet the TSW flagship club
           </p>

@@ -92,14 +92,14 @@ export default function ClassesList({ items }: { items: ClassItem[] }) {
               {/* Columns — hidden on small screens to keep the row height
                   readable. Opacity shifts subtly on hover so the values
                   stay legible against the orange background. */}
-              <Meta label="Goal" value={c.goal} className="hidden sm:block" />
+              <Meta label="Goal: " value={c.goal} className="hidden sm:block" />
               <Meta
-                label="Duration"
+                label="Duration: "
                 value={c.duration}
                 className="hidden sm:block"
               />
               <Meta
-                label="Membership"
+                label="Membership: "
                 value={c.membership}
                 className="hidden sm:block"
               />
