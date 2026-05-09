@@ -8,6 +8,7 @@ type Plan = {
   price: number;
   totalValue: number;
   positioning: string;
+  popular?: boolean;
   items: {
     key: BenefitKey;
     label: string;
@@ -25,7 +26,6 @@ const BENEFIT_ROWS = [
   { key: "mma", label: "Free MMA classes" },
   { key: "yoga", label: "Free Yoga classes" },
   { key: "dance", label: "Free Dance classes" },
-  { key: "accountability", label: "Trainer accountability" },
   { key: "tracking", label: "Progress tracking" },
   { key: "guest", label: "Guest passes" },
   { key: "pt", label: "No PT charges" },
@@ -40,7 +40,7 @@ const PLANS: Plan[] = [
     months: 1,
     price: 4000,
     totalValue: 7000,
-    positioning: "Try us for a month. No commitment, full experience.",
+    positioning: "Start today. 30 days to experience everything TSW has to offer — zero long-term commitment, zero excuses.",
     items: [
       { key: "access", label: "Full gym access 24/7", value: 4000 },
       { key: "steam", label: "Steam room access", value: 1500 },
@@ -54,14 +54,14 @@ const PLANS: Plan[] = [
     months: 3,
     price: 9000,
     totalValue: 20000,
-    positioning: "Three months is where real change begins to show.",
+    positioning: "Most members who start here don't leave. Three months to build the habit that actually sticks.",
+    popular: true,
     items: [
       { key: "access", label: "Full gym access 24/7", value: 9000 },
       { key: "steam", label: "Steam room access", value: 3000 },
       { key: "parking", label: "Parking", value: 1000 },
       { key: "workout", label: "Full workout plan (updated monthly)", value: 3000 },
-      { key: "diet", label: "Personalized diet plan", value: 2000 },
-      { key: "accountability", label: "WhatsApp check-in with trainer (weekly)", value: 2000 },
+      { key: "diet", label: "Personalized diet plan", value: 4000 },
     ],
   },
   {
@@ -70,8 +70,7 @@ const PLANS: Plan[] = [
     months: 6,
     price: 12000,
     totalValue: 38500,
-    positioning:
-      "Six months is where people stop asking 'are you working out?' and start asking 'what are you doing?'",
+    positioning: "Six months from now, people will notice before you do. Every tool to go all in — tracked every step of the way.",
     items: [
       { key: "access", label: "Full gym access 24/7", value: 12000 },
       { key: "steam", label: "Steam room access", value: 5000 },
@@ -80,8 +79,7 @@ const PLANS: Plan[] = [
       { key: "diet", label: "Personalized diet plan", value: 2000 },
       { key: "mma", label: "Free MMA classes", value: 6000 },
       { key: "yoga", label: "Free Yoga classes", value: 4000 },
-      { key: "accountability", label: "WhatsApp accountability — bi-weekly", value: 3000 },
-      { key: "tracking", label: "Progress tracking (measurements monthly)", value: 1500 },
+      { key: "tracking", label: "Progress tracking (measurements monthly)", value: 4500 },
     ],
   },
   {
@@ -90,7 +88,7 @@ const PLANS: Plan[] = [
     months: 12,
     price: 15000,
     totalValue: 66000,
-    positioning: "One price. Everything included. No hidden charges. Ever.",
+    positioning: "At ₹41 a day, this costs less than skipping the gym and paying for it anyway. One price. Everything. One year.",
     items: [
       { key: "access", label: "Full gym access 24/7", value: 15000 },
       { key: "steam", label: "Steam room access (unlimited)", value: 8000 },
@@ -100,8 +98,7 @@ const PLANS: Plan[] = [
       { key: "mma", label: "Free MMA classes", value: 6000 },
       { key: "yoga", label: "Free Yoga classes", value: 4000 },
       { key: "dance", label: "Free Dance classes", value: 4000 },
-      { key: "accountability", label: "WhatsApp accountability — weekly", value: 5000 },
-      { key: "tracking", label: "Monthly progress tracking", value: 3000 },
+      { key: "tracking", label: "Monthly progress tracking", value: 8000 },
       { key: "guest", label: "1 Guest pass per month", value: 3000 },
       { key: "pt", label: "No PT charges", value: 10000 },
     ],
@@ -139,8 +136,9 @@ export default function Plans() {
             </SplitReveal>
           </h2>
           <p className="max-w-xl font-body text-sm leading-relaxed text-white/55">
-            Choose your commitment. Every plan shows the full value first, then
-            the price you pay today.
+            Every membership is stacked with real value. We show you what it&apos;s
+            worth — then what you actually pay. The difference stays in your
+            pocket.
           </p>
         </div>
 
@@ -179,6 +177,14 @@ export default function Plans() {
             ))}
           />
           <ComparisonRow
+            label="You Save"
+            cells={PLANS.map((plan) => (
+              <span key={plan.tag} className="font-body text-sm font-semibold text-emerald-400">
+                ₹{formatINR(plan.totalValue - plan.price)}
+              </span>
+            ))}
+          />
+          <ComparisonRow
             label="You Pay"
             emphasized
             cells={PLANS.map((plan) => (
@@ -197,6 +203,14 @@ export default function Plans() {
             cells={PLANS.map((plan) => (
               <span key={plan.tag} className="text-white/55">
                 ₹{formatINR(Math.round(plan.price / plan.months))} / mo
+              </span>
+            ))}
+          />
+          <ComparisonRow
+            label="Per Day"
+            cells={PLANS.map((plan) => (
+              <span key={plan.tag} className="font-body text-sm text-white/45">
+                ₹{Math.ceil(plan.price / (plan.months * 30))} / day
               </span>
             ))}
           />
@@ -258,6 +272,9 @@ export default function Plans() {
 }
 
 function PlanHeader({ plan }: { plan: Plan }) {
+  const savings = plan.totalValue - plan.price;
+  const perDay = Math.ceil(plan.price / (plan.months * 30));
+
   return (
     <div
       className={`relative flex min-h-52 flex-col justify-between border-l border-white/[0.07] p-6 xl:p-8 ${
@@ -281,15 +298,30 @@ function PlanHeader({ plan }: { plan: Plan }) {
           >
             {plan.tag}
           </p>
-          {plan.highlight && (
-            <span className="rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.25em] text-[var(--color-gold)]">
-              Best Value
-            </span>
-          )}
+          <div className="flex items-center gap-1.5">
+            {plan.popular && !plan.highlight && (
+              <span className="rounded-full border border-white/20 bg-white/8 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.2em] text-white/55">
+                Most Popular
+              </span>
+            )}
+            {plan.highlight && (
+              <span className="rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.25em] text-[var(--color-gold)]">
+                Best Value
+              </span>
+            )}
+          </div>
         </div>
         <h3 className="mt-4 font-display text-2xl uppercase leading-none tracking-tight text-white xl:text-3xl">
           {plan.title}
         </h3>
+        <p className="mt-2 font-body text-xs font-semibold text-emerald-400">
+          You save ₹{formatINR(savings)}
+        </p>
+        {plan.highlight && (
+          <p className="mt-1 font-body text-[10px] text-white/40">
+            Just ₹{perDay}/day — less than your morning chai
+          </p>
+        )}
       </div>
       <a
         href="#contact"
@@ -342,6 +374,8 @@ function ComparisonRow({
 
 function MobilePlanCard({ plan }: { plan: Plan }) {
   const monthly = Math.round(plan.price / plan.months);
+  const perDay = Math.ceil(plan.price / (plan.months * 30));
+  const savings = plan.totalValue - plan.price;
 
   return (
     <article
@@ -371,17 +405,29 @@ function MobilePlanCard({ plan }: { plan: Plan }) {
             {plan.title}
           </h3>
         </div>
-        {plan.highlight && (
-          <span className="shrink-0 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.25em] text-[var(--color-gold)]">
-            Best Value
-          </span>
-        )}
+        <div className="flex shrink-0 flex-col items-end gap-1.5">
+          {plan.popular && !plan.highlight && (
+            <span className="rounded-full border border-white/20 bg-white/8 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.2em] text-white/55">
+              Most Popular
+            </span>
+          )}
+          {plan.highlight && (
+            <span className="rounded-full border border-(--color-gold)/40 bg-(--color-gold)/10 px-2.5 py-1 font-body text-[8px] uppercase tracking-[0.25em] text-brand-gold">
+              Best Value
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="relative mt-8 rounded-2xl border border-white/10 bg-black/30 p-4">
         <div className="flex items-center justify-between gap-4 font-body text-xs uppercase tracking-[0.25em] text-white/40">
           <span>Total Value</span>
           <span className="line-through">₹{formatINR(plan.totalValue)}</span>
+        </div>
+        <div className="mt-2 flex items-center justify-between gap-4">
+          <span className="font-body text-xs font-semibold text-emerald-400">
+            You save ₹{formatINR(savings)}
+          </span>
         </div>
         <div className="mt-3 flex items-end justify-between gap-4">
           <span className="font-body text-xs uppercase tracking-[0.25em] text-white/50">
@@ -395,9 +441,10 @@ function MobilePlanCard({ plan }: { plan: Plan }) {
             ₹{formatINR(plan.price)}
           </span>
         </div>
-        <p className="mt-2 font-body text-xs text-white/40">
-          ₹{formatINR(monthly)} / month
-        </p>
+        <div className="mt-2 flex items-center justify-between font-body text-xs text-white/40">
+          <span>₹{formatINR(perDay)} / day</span>
+          <span>₹{formatINR(monthly)} / month</span>
+        </div>
       </div>
 
       <ul className="relative mt-6 divide-y divide-white/[0.07] border-y border-white/[0.07]">

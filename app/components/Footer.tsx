@@ -1,49 +1,112 @@
 import Image from "next/image";
 
-const COL_A = [
-  { label: "Experience", href: "#about" },
-  { label: "Series", href: "#classes" },
-  { label: "Machines", href: "#membership" },
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function MapPinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+const NAV_LINKS = [
+  { label: "Memberships", href: "#classes" },
+  { label: "Plans", href: "#membership" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];
 
-// const COL_B = [
-//   // { label: "Privacy Policy", href: "#" },
-//   // { label: "Cookie Policy", href: "#" },
-//   // // { label: "Imprint", href: "#" },
-//   // { label: "Contact", href: "mailto:hello@tswfitness.com" },
-// ];
+type ContactLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+  icon?: "instagram" | "map";
+};
+
+const CONTACT_LINKS: ContactLink[] = [
+  { label: "+91 84489 39595", href: "tel:+918448939595" },
+  { label: "hello@tswfitness.com", href: "mailto:hello@tswfitness.com" },
+  {
+    label: "@tswfitness_",
+    href: "https://www.instagram.com/tswfitness_/",
+    external: true,
+    icon: "instagram",
+  },
+  {
+    label: "Find us on Maps",
+    href: "https://share.google/zR71KTt6x9wxJ1jkE",
+    external: true,
+    icon: "map",
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-[var(--color-charcoal)]">
-      <div className="mx-auto max-w-[1600px] px-5 py-8 sm:px-10 sm:py-12">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-charcoal">
+      <div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-10 sm:py-14">
         <div className="grid gap-10 sm:grid-cols-[1fr_auto_auto] sm:items-start">
-          <div className="flex items-center gap-3">
-            <span className="relative block h-10 w-10">
-              <Image
-                src="/logo.png"
-                alt="TSW Fitness"
-                fill
-                sizes="40px"
-                className="object-contain"
-              />
-            </span>
-            <span className="font-display text-xl uppercase tracking-[0.2em] text-white">
-              TSW<span className="text-[var(--color-gold)]">FITNESS</span>
-            </span>
+          {/* Brand */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <span className="relative block h-10 w-10">
+                <Image
+                  src="/logo.png"
+                  alt="TSW Fitness"
+                  fill
+                  sizes="40px"
+                  className="object-contain"
+                />
+              </span>
+              <span className="font-display text-xl uppercase tracking-[0.2em] text-white">
+                TSW<span className="text-brand-gold">FITNESS</span>
+              </span>
+            </div>
+            <p className="max-w-xs font-body text-xs leading-relaxed text-white/40">
+              It&apos;s not fitness. It&apos;s life.
+            </p>
           </div>
 
+          {/* Explore */}
           <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-white/40">
               Explore
             </p>
-            <ul className="mt-4 space-y-2">
-              {COL_A.map((l) => (
+            <ul className="mt-4 space-y-2.5">
+              {NAV_LINKS.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="font-body text-sm text-white/75 transition-colors hover:text-[var(--color-gold)]"
+                    className="font-body text-sm text-white/70 transition-colors hover:text-brand-gold"
                   >
                     {l.label}
                   </a>
@@ -52,43 +115,40 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* <div>
+          {/* Connect */}
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-white/40">
-              Legal
+              Connect
             </p>
-            <ul className="mt-4 space-y-2">
-              {COL_B.map((l) => (
+            <ul className="mt-4 space-y-2.5">
+              {CONTACT_LINKS.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="font-body text-sm text-white/75 transition-colors hover:text-[var(--color-gold)]"
+                    {...(l.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="inline-flex items-center gap-1.5 font-body text-sm text-white/70 transition-colors hover:text-brand-gold"
                   >
+                    {l.icon === "instagram" && (
+                      <InstagramIcon className="h-3.5 w-3.5" />
+                    )}
+                    {l.icon === "map" && (
+                      <MapPinIcon className="h-3.5 w-3.5" />
+                    )}
                     {l.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div> */}
+          </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[0.35em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} TSW Fitness</span>
-          <span className="text-white/55">
-            It&apos;s not fitness. It&apos;s life.
-          </span>
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[0.35em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} TSW Fitness. All rights reserved.</span>
           <span>Designed with precision</span>
         </div>
       </div>
-
-      {/* Giant brand wordmark */}
-      {/* <div className="relative -mb-[2vw] mt-10 overflow-hidden px-2 sm:px-4">
-        <p
-          aria-hidden
-          className="font-display text-center uppercase leading-[0.8] tracking-[-0.02em] text-white select-none text-[24vw]"
-        >
-          TSW<span className="text-[var(--color-gold)]">FITNESS</span>
-        </p>
-      </div> */}
     </footer>
   );
 }

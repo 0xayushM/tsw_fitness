@@ -89,44 +89,44 @@ type Series = {
 
 const SERIES: Series[] = [
   {
-    name: "Cardio Series",
-    tag: "01",
-    copy: "Engine-building sessions designed to raise your output without burning you out. Climbers, rowers, bikes — programmed with intention.",
-    cta: "See the Cardio Series",
+    name: "Trial Experience",
+    tag: "1 Month",
+    copy: "No strings attached. 30 days of full gym access, steam room, and a week-one workout plan — so you know exactly what you're committing to.",
+    cta: "View Trial Details",
     image: "/images/cardio.jpg",
     bg: "#76767663",
     fg: "#ffffff",
     accent: "#ffffff",
   },
   {
-    name: "Duet Series",
-    tag: "02",
-    copy: "Train with a partner. Shared timers, mirrored movements, zero excuses. Sessions built for two bodies, one goal.",
-    cta: "Discover the Duet Series",
+    name: "Transformation Starter",
+    tag: "3 Months",
+    copy: "Three months is the minimum for real results. Full access, personalised diet plan, and a programme updated every month.",
+    cta: "View 3-Month Plan",
     image: "/images/duet.jpg",
     bg: "#76767663",
     fg: "#ffffff",
     accent: "#ffffff",
   },
   {
-    name: "Prime Series",
-    tag: "03",
-    copy: "Heavy, deliberate strength work. Progressive overload under a coach's eye — the way you always wanted to lift.",
-    cta: "Step into the Prime Series",
+    name: "Serious Athlete Pack",
+    tag: "6 Months",
+    copy: "MMA, Yoga, monthly progress tracking, and coaching that knows your name. Six months of every tool for the ones training with intent.",
+    cta: "View 6-Month Pack",
     image: "/images/prime.jpg",
     bg: "#76767663",
     fg: "#ffffff",
     accent: "#ffffff",
   },
   {
-    name: "Infinite Series",
-    tag: "04",
-    copy: "Open-gym programming for members who want total freedom — with a written plan waiting when you arrive.",
-    cta: "Explore the Infinite Series",
+    name: "TSW Elite Membership",
+    tag: "1 Year",
+    copy: "One flat price. Every class, every perk, every single month — for an entire year. The maths are simple: ₹41 a day for everything.",
+    cta: "Claim Elite Membership",
     image: "/images/infinite.jpg",
     bg: "#76767663",
     fg: "#ffffff",
-    accent: "#ffffff",
+    accent: "#ED5D26",
   },
 ];
 
@@ -150,7 +150,7 @@ export default function Classes() {
       <div className="relative mx-auto max-w-[1600px]">
         <div className="flex flex-col items-center gap-4 text-center">
           <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/40">
-            / Our Series /
+            / Our Memberships /
           </span>
           <h1 className="mt-6 font-display uppercase tracking-tight text-white text-7xl md:text-8xl lg:text-[12vw]">
             <span className="block flex items-center">
@@ -248,7 +248,7 @@ function SeriesCard({ name, tag, copy, cta, image, bg, fg, accent }: Series) {
             className="font-body text-[10px] uppercase tracking-[0.4em]"
             style={{ color: fg, opacity: 0.75 }}
           >
-            Series · {tag}
+            Membership · {tag}
           </span>
           <span
             className="h-2 w-2 rounded-full"

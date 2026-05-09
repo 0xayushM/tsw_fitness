@@ -2,10 +2,10 @@ import Image from "next/image";
 import SplitHover from "./SplitHover";
 
 const LINKS = [
-  { label: "Experience", href: "#about" },
-  { label: "Series", href: "#classes" },
-  { label: "Machines", href: "#membership" },
-  { label: "Clubs", href: "#clubs" },
+  { label: "Memberships", href: "#classes" },
+  { label: "Plans", href: "#membership" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
