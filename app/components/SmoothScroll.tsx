@@ -26,8 +26,10 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     ).matches;
     if (prefersReduced) return;
 
+    let smoother: ReturnType<typeof ScrollSmoother.create> | null = null;
+
     const ctx = gsap.context(() => {
-      ScrollSmoother.create({
+      smoother = ScrollSmoother.create({
         wrapper: wrapperRef.current!,
         content: contentRef.current!,
         smooth: 1.4,
@@ -38,7 +40,20 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       });
     });
 
-    return () => ctx.revert();
+    // Re-measure after all lazy assets (iframes, images) finish loading.
+    // Without this, the iframe in the Contact section can cause GSAP to
+    // set the scroll spacer to a stale height, producing blank space below
+    // the footer.
+    const refresh = () => smoother?.refresh();
+    window.addEventListener("load", refresh);
+    // Second pass for assets that resolve just after the load event.
+    const t = setTimeout(refresh, 600);
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      clearTimeout(t);
+      ctx.revert();
+    };
   }, []);
 
   return (
