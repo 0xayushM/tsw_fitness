@@ -1,9 +1,82 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import HashLinkRouter from "./components/HashLinkRouter";
 import Loader from "./components/Loader";
+import BrewVisitorPing from "./components/BrewVisitorPing";
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://tswfitness.com";
+
+const defaultTitle = "TSW Fitness — It's not fitness. It's life.";
+const defaultDescription =
+  "TSW Fitness is a high-energy gym in New Delhi — expert coaches, 45-minute sessions, and purpose-built training floors. Tours, memberships, and class info.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s · TSW Fitness",
+  },
+  description: defaultDescription,
+  keywords: [
+    "TSW Fitness",
+    "gym Delhi",
+    "gym Paschim Vihar",
+    "fitness club",
+    "personal training",
+    "group classes",
+    "New Delhi gym",
+  ],
+  authors: [{ name: "TSW Fitness", url: siteUrl }],
+  creator: "TSW Fitness",
+  publisher: "TSW Fitness",
+  category: "fitness",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "TSW Fitness",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [
+      {
+        url: "/gallery/second_floor.jpeg",
+        alt: "TSW Fitness training floor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ["/gallery/second_floor.jpeg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
+};
 
 const balboa = localFont({
   src: "../public/fonts/balboa-condensed.otf",
@@ -35,12 +108,6 @@ const britanica = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "TSW Fitness — It's not fitness. It's life.",
-  description:
-    "TSW Fitness is a high-energy gym built for results. Join 45-minute workouts, expert coaches and world-class equipment across 4 clubs.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,7 +121,10 @@ export default function RootLayout({
       <body className="bg-[var(--color-charcoal)] text-[var(--foreground)]">
         <Loader />
         <HashLinkRouter />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <BrewVisitorPing />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

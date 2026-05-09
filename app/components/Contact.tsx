@@ -25,11 +25,75 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-  };
+    setError(null);
+    const form = event.currentTarget;
+    const fd = new FormData(form);
+    const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const phone = String(fd.get("phone") ?? "").trim();
+    const message = String(fd.get("message") ?? "").trim();
+
+    const clientVisitor =
+      typeof window !== "undefined"
+        ? {
+            href: window.location.href,
+            path: window.location.pathname,
+            referrer: document.referrer || "",
+            language: navigator.language ?? "",
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone ?? "",
+            viewport_w: String(window.innerWidth),
+            viewport_h: String(window.innerHeight),
+          }
+        : {};
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form_name: "contact",
+          data: {
+            name,
+            email,
+            phone,
+            message,
+            ...clientVisitor,
+          },
+        }),
+      });
+
+      const raw = await res.text();
+      let body: unknown;
+      try {
+        body = raw ? JSON.parse(raw) : {};
+      } catch {
+        body = {};
+      }
+
+      if (!res.ok) {
+        const detail =
+          body &&
+          typeof body === "object" &&
+          "error" in body &&
+          typeof (body as { error: unknown }).error === "string"
+            ? (body as { error: string }).error
+            : `Something went wrong (${res.status}).`;
+        setError(detail);
+        return;
+      }
+
+      form.reset();
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <section
@@ -131,7 +195,11 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+              <form
+                name="contact"
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-7"
+              >
                 <Field label="Your name" name="name" type="text" />
                 <Field label="Email" name="email" type="email" />
                 <Field
@@ -146,11 +214,21 @@ export default function Contact() {
                   type="textarea"
                 />
 
+                {error ? (
+                  <p
+                    className="font-body text-sm text-red-300/90"
+                    role="alert"
+                  >
+                    {error}
+                  </p>
+                ) : null}
+
                 <button
                   type="submit"
-                  className="mt-2 inline-flex w-fit items-center gap-3 rounded-full bg-brand-gold px-6 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white transition-transform hover:-translate-y-0.5"
+                  disabled={submitting}
+                  className="mt-2 inline-flex w-fit items-center gap-3 rounded-full bg-brand-gold px-6 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Send message
+                  {submitting ? "Sending…" : "Send message"}
                   <span
                     aria-hidden
                     className="inline-block h-1.5 w-1.5 rounded-full bg-white"
