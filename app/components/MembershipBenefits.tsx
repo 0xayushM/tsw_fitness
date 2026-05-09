@@ -39,7 +39,7 @@ export default function MembershipBenefits() {
           <span className="font-body text-[10px] uppercase tracking-[0.45em] text-white/40">
             / TSW Fitness /
           </span>
-          <h1 className="mt-6 w-full font-display uppercase tracking-tight text-white text-8xl md:text-8xl lg:text-[13vw]">
+          <h1 className="mt-6 w-full font-display uppercase tracking-tight text-white text-7xl md:text-8xl lg:text-[13vw]">
             <span className="block flex items-center">
               <SplitReveal
                 delay={0}
