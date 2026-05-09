@@ -128,10 +128,13 @@ body {
   animation: marquee 44s linear infinite reverse;
 }
 
-/* GPU-accelerated marquee: promote each strip row to its own compositor layer */
+/* GPU-accelerated marquee: animate on compositor thread.
+   NOTE: backface-visibility: hidden is intentionally omitted — it creates a
+   stacking context that prevents <video> textures from compositing correctly
+   on desktop browsers (videos go invisible). Use translateZ(0) on individual
+   video cards instead. */
 .marquee-gpu {
   will-change: transform;
-  backface-visibility: hidden;
 }
 
 @keyframes float-slow {
