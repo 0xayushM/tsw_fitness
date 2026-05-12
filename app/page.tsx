@@ -19,13 +19,13 @@ export default function Home() {
         <MembershipBenefits />
         <Classes />
         <Plans />
-        <CurrentOffer />
+        {/* <CurrentOffer /> */}
         <GalleryStrip />
         <Giant />
         <Contact />
       </main>
       <Footer />
-      <OfferModal />
+      {/* <OfferModal /> */}
     </div>
   );
 }
