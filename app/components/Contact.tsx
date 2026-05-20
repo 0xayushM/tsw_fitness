@@ -140,10 +140,10 @@ export default function Contact() {
               <span>
                 <span className="text-white/40">Email · </span>
                 <a
-                  href="mailto:hello@tswfitness.com"
+                  href="mailto:customercare@tswfitness.com"
                   className="text-white transition-colors hover:text-brand-gold"
                 >
-                  hello@tswfitness.com
+                  customercare@tswfitness.com
                 </a>
               </span>
               <span>

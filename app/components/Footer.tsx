@@ -55,7 +55,7 @@ type ContactLink = {
 
 const CONTACT_LINKS: ContactLink[] = [
   { label: "+91 84489 39595", href: "tel:+918448939595" },
-  { label: "hello@tswfitness.com", href: "mailto:hello@tswfitness.com" },
+  { label: "customercare@tswfitness.com", href: "mailto:customercare@tswfitness.com" },
   {
     label: "@tswfitness_",
     href: "https://www.instagram.com/tswfitness_/",
