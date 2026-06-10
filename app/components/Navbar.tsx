@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import SplitHover from "./SplitHover";
 
 const LINKS = [
@@ -47,6 +48,14 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3 sm:gap-5">
+          {/* Challenge CTA pill — highlighted */}
+          <Link
+            href="/challenge"
+            className="hidden items-center gap-2 rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold)]/10 px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)] backdrop-blur transition-colors hover:bg-[var(--color-gold)] hover:text-white sm:inline-flex sm:px-5"
+          >
+            <span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-gold)]" />
+            <SplitHover>6-Week Challenge</SplitHover>
+          </Link>
           <a
             href="#membership"
             className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:px-5"

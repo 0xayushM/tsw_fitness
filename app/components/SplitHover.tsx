@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, RefObject, useEffect, useRef } from "react";
+import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import {
@@ -41,9 +41,18 @@ export default function SplitHover({
   const wrapperRef = useRef<HTMLSpanElement | null>(null);
   const originalRef = useRef<HTMLSpanElement | null>(null);
   const cloneRef = useRef<HTMLSpanElement | null>(null);
+  // Only run the character clone/animation on devices that can actually hover
+  // with a fine pointer. On touch screens the clone has no way to animate away
+  // and would render as duplicated, overlapping text.
+  const [hoverable, setHoverable] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    setHoverable(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !hoverable) return;
 
     registerPluginOnce(SplitText);
     ensureMotionCoreEase();
@@ -110,7 +119,13 @@ export default function SplitHover({
       originalSplit.revert();
       cloneSplit?.revert();
     };
-  }, [children, hoverTargetRef, duration, stagger]);
+  }, [children, hoverTargetRef, duration, stagger, hoverable]);
+
+  // Touch / no-hover devices: render plain text that wraps naturally (no clone,
+  // no overflow clipping) so long button labels never duplicate or get cut off.
+  if (!hoverable) {
+    return <span className={className}>{children}</span>;
+  }
 
   return (
     <span
