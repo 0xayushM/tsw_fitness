@@ -39,8 +39,8 @@ export default function ChallengeCTA() {
             </h2>
 
             <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-white/60">
-              The only structured programme in Paschim Vihar with all three pillars —
-              fitness, nutrition, and accountability — plus a{" "}
+              The only structured programme in Paschim Vihar with all three pillars -
+              fitness, nutrition, and accountability - plus a{" "}
               <span className="text-white font-medium">₹3,000 money-back guarantee</span> if you show up and do the work.
             </p>
 

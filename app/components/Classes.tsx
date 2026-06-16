@@ -91,7 +91,7 @@ const SERIES: Series[] = [
   {
     name: "Trial Experience",
     tag: "1 Month",
-    copy: "No strings attached. 30 days of full gym access, steam room, and a week-one workout plan — so you know exactly what you're committing to.",
+    copy: "No strings attached. 30 days of full gym access, steam room, and a week-one workout plan - so you know exactly what you're committing to.",
     cta: "View Trial Details",
     image: "/images/cardio.jpg",
     bg: "#76767663",
@@ -121,7 +121,7 @@ const SERIES: Series[] = [
   {
     name: "TSW Elite Membership",
     tag: "1 Year",
-    copy: "One flat price. Every class, every perk, every single month — for an entire year. The maths are simple: ₹41 a day for everything.",
+    copy: "One flat price. Every class, every perk, every single month - for an entire year. The maths are simple: ₹41 a day for everything.",
     cta: "Claim Elite Membership",
     image: "/images/infinite.jpg",
     bg: "#76767663",
@@ -175,14 +175,14 @@ export default function Classes() {
           </h1>
         </div>
 
-        {/* Colored series cards — 2×2 grid with image-as-background */}
+        {/* Colored series cards - 2×2 grid with image-as-background */}
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
           {SERIES.map((s) => (
             <SeriesCard key={s.name} {...s} />
           ))}
         </div>
 
-        {/* Our Classes — headline left, bracketed blurb top-right */}
+        {/* Our Classes - headline left, bracketed blurb top-right */}
         <div className="mt-24 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-16">
           <h3 className="font-display uppercase tracking-tight text-white text-[18vw] sm:text-[14vw] lg:text-[11vw]">
           <SplitReveal
@@ -198,7 +198,7 @@ export default function Classes() {
             </span>
             <span>
               Coaches trained in-house. Programming refreshed every six weeks.
-              Pick what fits today — every class, every club, every time.
+              Pick what fits today - every class, every club, every time.
             </span>
             <span aria-hidden className="font-display text-white/50">
               ]

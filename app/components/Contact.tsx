@@ -124,7 +124,7 @@ export default function Contact() {
             </h2>
             <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-white/70 sm:text-base">
               Drop us a line. A coach gets back to every enquiry within
-              24&nbsp;hours — tours, membership, programming, whatever you need.
+              24&nbsp;hours - tours, membership, programming, whatever you need.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 font-body text-[11px] uppercase tracking-[0.35em] text-white/55 sm:text-xs">
@@ -180,7 +180,7 @@ export default function Contact() {
                   / Received /
                 </span>
                 <h3 className="mt-4 font-display text-4xl uppercase leading-tight tracking-tight text-white sm:text-5xl">
-                  Thanks — we&apos;ll be in touch.
+                  Thanks - we&apos;ll be in touch.
                 </h3>
                 <p className="mt-4 font-body text-sm leading-relaxed text-white/65">
                   A coach will reach out within 24 hours. In the meantime, feel
@@ -239,9 +239,9 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Location block — compact square map beside address info */}
+        {/* Location block - compact square map beside address info */}
         <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-10">
-          {/* Square map — fixed size so GSAP measures a stable height */}
+          {/* Square map - fixed size so GSAP measures a stable height */}
           <div
             className="shrink-0 overflow-hidden rounded-2xl border border-white/10"
             style={{ width: 280, height: 280 }}
@@ -254,7 +254,7 @@ export default function Contact() {
               allowFullScreen
               loading="eager"
               referrerPolicy="no-referrer-when-downgrade"
-              title="TSW Fitness Location — Paschim Vihar, New Delhi"
+              title="TSW Fitness Location - Paschim Vihar, New Delhi"
             />
           </div>
 

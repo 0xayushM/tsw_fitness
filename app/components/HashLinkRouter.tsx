@@ -22,7 +22,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
  *    to the browser's native `scrollIntoView({ behavior: "smooth" })`.
  *
  * Things we deliberately leave to the browser:
- *  - Modifier clicks (cmd / ctrl / shift / alt) and non-primary buttons —
+ *  - Modifier clicks (cmd / ctrl / shift / alt) and non-primary buttons -
  *    users expect those to open in a new tab / window.
  *  - Any anchor whose `href` is just `"#"` (no target) or whose target id
  *    doesn't resolve to a real element.

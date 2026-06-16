@@ -1,4 +1,4 @@
-# Media needed — `/challenge` (6-Week Transformation Challenge)
+# Media needed - `/challenge` (6-Week Transformation Challenge)
 
 Every visual on the page is a labelled `<MediaSlot/>` placeholder right now. Generate or shoot
 each asset below, drop it in `public/images/challenge/` (create the folder), then replace the
@@ -21,27 +21,27 @@ For video slots, use a muted autoplay `<video>` (mp4/webm) or an embed.
 
 ---
 
-## Priority 1 — above the fold (most important)
+## Priority 1 - above the fold (most important)
 
 | Slot ID | Type | Where | What to show | Recommended size |
 |---|---|---|---|---|
 | `hero-vsl` | **Video** | Hero, Step 1 | 90–120s sales video: founder/head coach explains the Challenge, the 3 pillars (training, nutrition, accountability) and the money-back guarantee. The single most important asset. | 1920×1080 (16:9), MP4 H.264 |
-| (bg) `heroi.mp4` | Video | Hero background | Already in `public/video/` — ambient dimmed gym footage. Replace with TSW floor footage if you have it. | 1920×1080 loop |
+| (bg) `heroi.mp4` | Video | Hero background | Already in `public/video/` - ambient dimmed gym footage. Replace with TSW floor footage if you have it. | 1920×1080 loop |
 
-## Priority 2 — proof & transformations
+## Priority 2 - proof & transformations
 
 | Slot ID | Type | What to show | Size |
 |---|---|---|---|
-| `transform-1-before` / `-after` | Image ×2 | Priya S. — Day 1 vs Day 42, same pose & lighting | 900×1200 (3:4) each |
+| `transform-1-before` / `-after` | Image ×2 | Priya S. - Day 1 vs Day 42, same pose & lighting | 900×1200 (3:4) each |
 | `transform-2-before` / `-after` | Image ×2 | Rahul M. before/after | 900×1200 each |
 | `transform-3-before` / `-after` | Image ×2 | Anjali K. before/after | 900×1200 each |
 | `transform-4-before` / `-after` | Image ×2 | Vikram T. before/after | 900×1200 each |
 | `vid-testimonial-1..4` | **Video** ×4 | 20–40s selfie-style member testimonial clips | 1080×1440 (3:4) vertical |
 
-> Names/stats in the carousel and testimonials are placeholders — swap them for real members
+> Names/stats in the carousel and testimonials are placeholders - swap them for real members
 > in `app/challenge/page.tsx` (`TRANSFORMS` array and the testimonial array in section 9).
 
-## Priority 3 — supporting visuals
+## Priority 3 - supporting visuals
 
 | Slot ID | Type | What to show | Size |
 |---|---|---|---|
@@ -50,7 +50,7 @@ For video slots, use a muted autoplay `<video>` (mp4/webm) or an embed.
 | `pillar-nutrition` | Image | Meal prep / healthy food / nutrition coaching | 1200×900 |
 | `pillar-accountability` | Image | Trainer 1:1 check-in / small group | 1200×900 |
 | `coach-1..4` | Image ×4 | Coach portraits on the training floor, TSW branding visible | 900×1200 (3:4) |
-| `founder` | Image | Founder/head coach portrait — warm, credible | 1000×1250 (4:5) |
+| `founder` | Image | Founder/head coach portrait - warm, credible | 1000×1250 (4:5) |
 
 > The guarantee section is now a self-contained graphic (rotating seal + 3-step process) and needs **no image**.
 
@@ -65,5 +65,5 @@ For video slots, use a muted autoplay `<video>` (mp4/webm) or an embed.
 
 ## Notes
 - Brand colour is `--color-gold` = `#ED5D26` (orange). Keep accents consistent.
-- Keep before/after pairs in identical pose, framing and lighting — it reads as more honest and converts better.
+- Keep before/after pairs in identical pose, framing and lighting - it reads as more honest and converts better.
 - Always keep the results disclaimer under the carousel.

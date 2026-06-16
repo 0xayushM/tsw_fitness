@@ -103,7 +103,7 @@ export default function MembershipBenefits() {
             - col-span-1 circle tile uses aspect-square (width = 1u, height = 1u)
             On mobile everything stacks full-width. */}
         <div className="mt-12 grid grid-cols-2 gap-0 md:mt-16 md:grid-cols-5 md:gap-0">
-          {/* Row 1, col 3 — Unparalleled Personal Training circle.
+          {/* Row 1, col 3 - Unparalleled Personal Training circle.
               Sits before the video in source order so on mobile (single
               column, source order) the circle stacks above the video.
               On desktop the explicit md:col-start/md:row-start places it
@@ -119,13 +119,13 @@ export default function MembershipBenefits() {
             className="col-span-2 md:col-span-1 md:row-start-1 md:col-start-3"
           />
 
-          {/* Rows 1-2, cols 1-2 — Personal trainer video (square, 2x2) */}
+          {/* Rows 1-2, cols 1-2 - Personal trainer video (square, 2x2) */}
           <VideoTile
             src="/video/personal_trainer.mp4"
             className="col-span-2 md:col-span-2 md:row-span-2 md:row-start-1 md:col-start-1 md:aspect-square"
           />
 
-          {/* Row 2, col 5 — Unrivaled Group Fitness Classes circle.
+          {/* Row 2, col 5 - Unrivaled Group Fitness Classes circle.
               Same trick: rendered before its paired video so the mobile
               stack reads circle-then-video. */}
           <CircleCallout2
@@ -139,13 +139,13 @@ export default function MembershipBenefits() {
             className="col-span-2 md:col-span-1 md:row-start-2 md:col-start-5"
           />
 
-          {/* Row 1, cols 4-5 — Group classes video */}
+          {/* Row 1, cols 4-5 - Group classes video */}
           <VideoTile
             src="/video/group_classes.mp4"
             className="col-span-2 md:col-span-2 md:row-start-1 md:col-start-4 aspect-[1] md:aspect-[2/1]"
           />
 
-          {/* Row 3, col 3 — Studio & Gym Amenities circle */}
+          {/* Row 3, col 3 - Studio & Gym Amenities circle */}
           <CircleCallout
             label={
               <>
@@ -157,7 +157,7 @@ export default function MembershipBenefits() {
             className="col-span-2 md:col-span-1 md:row-start-3 md:col-start-2"
           />
 
-          {/* Rows 4-5 — Gallery strip: 5 portrait tiles, one per column,
+          {/* Rows 4-5 - Gallery strip: 5 portrait tiles, one per column,
               each spanning both rows. aspect-[1/2] at 1-col width gives
               height = 2u, matching two stacked row-heights. */}
           {GALLERY.map((tile) => (

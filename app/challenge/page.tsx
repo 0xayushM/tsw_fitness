@@ -8,20 +8,20 @@ import SplitHover from "../components/SplitHover";
 import HorizontalTransforms from "../components/HorizontalTransforms";
 
 /* ════════════════════════════════════════════════════════════════════════════
-   TSW FITNESS — 6-WEEK TRANSFORMATION CHALLENGE  ·  /challenge
+   TSW FITNESS - 6-WEEK TRANSFORMATION CHALLENGE  ·  /challenge
    Conversion landing page. VSL-led, structured on a proven application funnel.
    All photo/video assets are intentionally left as labelled <MediaSlot/> boxes.
    See MEDIA-NEEDED.md for the full shot list.
 ═════════════════════════════════════════════════════════════════════════════ */
 
 const APPLY = "#apply";
-const BATCH_DATE = "June 23, 2026";
+const BATCH_DATE = "June 22, 2026";
 const PRICE = "₹6,999";
 const GUARANTEE = "₹3,000";
 const SPOTS = 15;
 
 // ── Countdown ────────────────────────────────────────────────────────────────
-const DEADLINE = new Date("2026-06-22T23:59:59+05:30").getTime();
+const DEADLINE = new Date("2026-06-22T22:59:59+05:30").getTime();
 
 function useCountdown() {
   const calc = () => {
@@ -33,8 +33,11 @@ function useCountdown() {
       s: Math.floor((diff % 60000) / 1000),
     };
   };
-  const [t, setT] = useState(calc);
+  // Start with a deterministic value so server and first client render match,
+  // then compute the real countdown after mount to avoid hydration mismatch.
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
   useEffect(() => {
+    setT(calc());
     const id = setInterval(() => setT(calc()), 1000);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,7 +140,7 @@ function TimerBlock({ compact, onLight }: { compact?: boolean; onLight?: boolean
   );
 }
 
-// ── MEDIA SLOT — labelled placeholder for images / video ───────────────────────
+// ── MEDIA SLOT - labelled placeholder for images / video ───────────────────────
 function MediaSlot({
   id,
   label,
@@ -189,6 +192,45 @@ function MediaSlot({
   );
 }
 
+// ── Hero VSL video (poster thumbnail from first frame, audio on, tap to play) ──
+function HeroVSL() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const play = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.play();
+    setPlaying(true);
+  };
+  return (
+    <div className="relative overflow-hidden rounded-[20px] bg-[#101010]" style={{ aspectRatio: "4/5" }}>
+      <video
+        ref={videoRef}
+        src="/challenge/founder_video.mp4#t=0.1"
+        className="absolute inset-0 h-full w-full object-cover"
+        controls={playing}
+        playsInline
+        preload="metadata"
+      />
+      {!playing && (
+        <button onClick={play} aria-label="Play video" className="group absolute inset-0 z-10 flex items-center justify-center">
+          <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-gold)] shadow-[0_0_45px_rgba(237,93,38,0.7)] transition-transform group-hover:scale-110">
+            <span aria-hidden className="absolute h-20 w-20 animate-ping rounded-full bg-[var(--color-gold)]/30" />
+            <svg viewBox="0 0 24 24" className="relative ml-1 h-8 w-8" fill="#fff">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+      )}
+      {/* live tag */}
+      <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 font-body text-[9px] uppercase tracking-[0.25em] text-white/80 backdrop-blur">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" /> Now enrolling
+      </span>
+    </div>
+  );
+}
+
 // ── Icons ───────────────────────────────────────────────────────────────────────
 const Star = ({ light }: { light?: boolean }) => (
   <svg viewBox="0 0 16 16" className="h-4 w-4 shrink-0" fill={light ? "#fff" : "#ED5D26"}>
@@ -235,19 +277,19 @@ function ApplyBtn({ children, full, secondary }: { children: React.ReactNode; fu
 const FAQS = [
   {
     q: `Is the ${GUARANTEE} guarantee just for showing up?`,
-    a: "No — you earn it. Attend all 18 sessions (3×/week for 6 weeks) AND show measurable progress in any 2 of 6 tracked categories: weight or body-fat reduction, inch loss, strength gain, full attendance, endurance improvement, or Day 1 vs Day 42 photos. Your trainer assesses it on Day 42 using real numbers, not opinion.",
+    a: "No - you earn it. Attend all 18 sessions (3×/week for 6 weeks) AND show measurable progress in any 2 of 6 tracked categories: weight or body-fat reduction, inch loss, strength gain, full attendance, endurance improvement, or Day 1 vs Day 42 photos. Your trainer assesses it on Day 42 using real numbers, not opinion.",
   },
   {
     q: "I've started and quit before. Why would this be different?",
-    a: "Because every past attempt was probably missing at least one of three things: a workout plan built for your goal, a nutrition plan built for your life, and someone who actually notices when you don't show up. The Challenge gives you all three from Day 1 — plus a 15-person batch where quietly disappearing isn't an option.",
+    a: "Because every past attempt was probably missing at least one of three things: a workout plan built for your goal, a nutrition plan built for your life, and someone who actually notices when you don't show up. The Challenge gives you all three from Day 1 - plus a 15-person batch where quietly disappearing isn't an option.",
   },
   {
     q: "What if I'm a complete beginner?",
-    a: "Your plan starts from where you are on Day 1 — not where we wish you were. You'll never be handed a machine and left alone. You walk in with a written plan and a trainer who knows your name.",
+    a: "Your plan starts from where you are on Day 1 - not where we wish you were. You'll never be handed a machine and left alone. You walk in with a written plan and a trainer who knows your name.",
   },
   {
     q: "Is the diet plan personalised or a generic PDF?",
-    a: "Personalised. Built around your body, your goal, your food preferences and your schedule — with a grocery list and an eating-out guide. It is not downloaded from Google or copied from another member.",
+    a: "Personalised. Built around your body, your goal, your food preferences and your schedule - with a grocery list and an eating-out guide. It is not downloaded from Google or copied from another member.",
   },
   {
     q: "Do I have to train at a fixed time every day?",
@@ -263,8 +305,8 @@ const COMPARISON: [string, string, string][] = [
   ["Workout plan", "Generic or none", "Personalised to your goal, updated weekly"],
   ["Nutrition support", "Not included", "Personalised diet plan, grocery list & eating-out guide"],
   ["Accountability", "Nobody checks", "Weekly 1:1 trainer check-in + WhatsApp group"],
-  ["Progress tracking", "You guess", "Day 1 & Day 42 measurements — real numbers"],
-  ["Structure", "Open-ended, easy to drift", "6 weeks, 18 sessions — clear start and finish"],
+  ["Progress tracking", "You guess", "Day 1 & Day 42 measurements - real numbers"],
+  ["Structure", "Open-ended, easy to drift", "6 weeks, 18 sessions - clear start and finish"],
   ["Skin in the game", "Pay and pray", `${GUARANTEE} back if you attend all sessions + show progress`],
 ];
 
@@ -333,7 +375,7 @@ function StickyBar() {
           href={APPLY}
           className="ml-auto inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-6 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white shadow-[0_0_20px_rgba(237,93,38,0.4)] hover:opacity-90"
         >
-          <SplitHover>Apply Now — {PRICE}</SplitHover>
+          <SplitHover>Apply Now - {PRICE}</SplitHover>
         </a>
       </div>
     </div>
@@ -621,11 +663,32 @@ export default function ChallengePage() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const clientVisitor =
+      typeof window !== "undefined"
+        ? {
+            href: window.location.href,
+            path: window.location.pathname,
+            referrer: document.referrer || "",
+            language: navigator.language ?? "",
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone ?? "",
+            viewport_w: String(window.innerWidth),
+            viewport_h: String(window.innerHeight),
+          }
+        : {};
+
     try {
       await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "6-week-challenge" }),
+        body: JSON.stringify({
+          form_name: "6-week-challenge",
+          data: {
+            ...form,
+            source: "6-week-challenge",
+            ...clientVisitor,
+          },
+        }),
       });
     } catch {}
     setDone(true);
@@ -634,6 +697,8 @@ export default function ChallengePage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-16 text-white">
       <ScrollProgress />
+
+      <div style={{ zoom: 0.9 }}>
 
       {/* ══ NAVBAR ═══════════════════════════════════════════════════════════ */}
       <header className="fixed inset-x-0 top-0 z-40">
@@ -661,7 +726,7 @@ export default function ChallengePage() {
         </nav>
       </header>
 
-      {/* ══ 1. HERO — EDITORIAL VSL SPLIT ════════════════════════════════════ */}
+      {/* ══ 1. HERO - EDITORIAL VSL SPLIT ════════════════════════════════════ */}
       <section className="relative min-h-[100svh] overflow-hidden bg-[#070707]">
         <style>{`
           @keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -689,7 +754,7 @@ export default function ChallengePage() {
 
         {/* editorial frame index */}
         <div className="absolute left-5 top-24 z-10 hidden font-body text-[10px] uppercase tracking-[0.4em] text-white/25 sm:left-10 lg:block">
-          (01) — The 6-Week Challenge
+          (01) - The 6-Week Challenge
         </div>
 
         <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-[1500px] items-center gap-12 px-5 pt-32 pb-24 sm:px-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-16 lg:pb-28">
@@ -713,7 +778,7 @@ export default function ChallengePage() {
               </span>
               <span className="relative mt-2 block w-fit">
                 <span className="block text-[var(--color-gold)]">
-                  <SplitReveal mode="chars" delay={0.26} config={{ chars: { duration: 0.8, stagger: 0.018 } }}>Or Your Money Back.</SplitReveal>
+                  <SplitReveal mode="chars" delay={0.26} config={{ chars: { duration: 0.8, stagger: 0.018 } }}>And get your Money Back.</SplitReveal>
                 </span>
                 <span
                   aria-hidden
@@ -725,9 +790,9 @@ export default function ChallengePage() {
 
             <Rise delay={0.15}>
               <p className="mt-7 max-w-xl font-body text-lg leading-relaxed text-white/80">
-                Paschim Vihar&apos;s only structured 6-week challenge built on all three pillars —{" "}
+                Paschim Vihar&apos;s only structured 6-week challenge built on all three pillars -{" "}
                 <span className="font-semibold text-white">training, nutrition &amp; weekly 1:1 coaching</span>. Do the work and
-                you&apos;ll see real change, or we hand you <span className="font-semibold text-[var(--color-gold)]">{GUARANTEE} back</span>. Simple.
+                you&apos;ll see real change, and we hand you <span className="font-semibold text-[var(--color-gold)]">{GUARANTEE} back</span>. Simple.
               </p>
             </Rise>
 
@@ -740,7 +805,7 @@ export default function ChallengePage() {
                     ))}
                   </div>
                   <span className="font-body text-xs text-white/65">
-                    <span className="font-semibold text-white">4.9</span> · 200+ member reviews
+                    <span className="font-semibold text-white">4.9</span> · 50+ member reviews
                   </span>
                 </div>
                 <span className="hidden h-3 w-px bg-white/15 sm:block" />
@@ -755,7 +820,7 @@ export default function ChallengePage() {
                     href={APPLY}
                     className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-9 py-4 font-body text-[12px] uppercase tracking-[0.3em] text-white shadow-[0_0_45px_rgba(237,93,38,0.45)] transition-shadow hover:shadow-[0_0_70px_rgba(237,93,38,0.7)]"
                   >
-                    <SplitHover>Claim Your Spot — {PRICE}</SplitHover>
+                    <SplitHover>Claim Your Spot - {PRICE}</SplitHover>
                     <span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 transition-transform group-hover:translate-x-1">
                       <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 8h10M9 4l4 4-4 4" />
@@ -795,30 +860,10 @@ export default function ChallengePage() {
             <div style={{ animation: "heroFloat 7s ease-in-out infinite" }}>
               <p className="mb-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
                 <span className="inline-block h-px w-8 bg-[var(--color-gold)]" />
-                Watch — 2 min · how it works
+                Watch - 2 min · how it works
               </p>
               <div className="relative overflow-hidden rounded-[28px] border border-white/15 bg-[#0d0d0d] p-2 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-                <div className="relative">
-                  <MediaSlot
-                    id="hero-vsl"
-                    kind="video"
-                    ratio="4/5"
-                    rounded="rounded-[20px]"
-                    label="Hero VSL: founder/head coach explains the Challenge, the 3 pillars and the guarantee, and who it's for. ~90–120s. Autoplay muted, tap to unmute."
-                  />
-                  <button aria-label="Play video" className="group absolute inset-0 z-10 flex items-center justify-center">
-                    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-gold)] shadow-[0_0_45px_rgba(237,93,38,0.7)] transition-transform group-hover:scale-110">
-                      <span aria-hidden className="absolute h-20 w-20 animate-ping rounded-full bg-[var(--color-gold)]/30" />
-                      <svg viewBox="0 0 24 24" className="relative ml-1 h-8 w-8" fill="#fff">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </span>
-                  </button>
-                  {/* live tag */}
-                  <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 font-body text-[9px] uppercase tracking-[0.25em] text-white/80 backdrop-blur">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" /> Now enrolling
-                  </span>
-                </div>
+                <HeroVSL />
               </div>
 
               {/* floating result badge */}
@@ -852,7 +897,7 @@ export default function ChallengePage() {
         </div>
       </section>
 
-      {/* ══ 2. TRUST STRIP — marquee ═════════════════════════════════════════ */}
+      {/* ══ 2. TRUST STRIP - marquee ═════════════════════════════════════════ */}
       <section className="border-y border-white/[0.06] bg-[#0d0d0d] py-5">
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 px-5 text-center">
           {[
@@ -870,10 +915,143 @@ export default function ChallengePage() {
         </div>
       </section>
 
-      {/* ══ 3. TRANSFORMATIONS — GSAP pinned horizontal scroll ═══════════════ */}
+      {/* ══ 2. PRICING SNAPSHOT (mirror of section 8 offer) ═════════════════ */}
+      <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(237,93,38,0.1),transparent_60%)]" />
+        <div className="relative mx-auto max-w-[1300px]">
+          {/* fast-action bonuses */}
+          <Rise>
+            <div className="relative overflow-hidden rounded-3xl border border-dashed border-[var(--color-gold)]/40 bg-[#0f0c08] p-7 sm:p-8">
+              <div aria-hidden className="pointer-events-none absolute -left-16 -top-16 h-40 w-40 rounded-full bg-[var(--color-gold)]/10 blur-3xl" />
+              <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                <div className="max-w-md">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)]/15 px-3 py-1 font-body text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-gold)]">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-gold)]" /> Fast-action bonuses
+                  </span>
+                  <h3 className="mt-4 font-display text-2xl uppercase leading-tight text-white sm:text-3xl">
+                    Lock your spot before the batch fills - get these free
+                  </h3>
+                  <p className="mt-2 font-body text-sm text-white/50">
+                    Bonuses are only for members who confirm before the 15 spots are gone. Once the batch is full, they&apos;re off the table.
+                  </p>
+                </div>
+                <ul className="grid w-full max-w-md gap-3">
+                  {[
+                    ["Day 1 body-composition scan", "₹1,000"],
+                    ["Supplement & recovery starter guide", "₹800"],
+                    ["2 extra guest passes for friends", "₹1,000"],
+                  ].map(([item, val]) => (
+                    <li key={item} className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#141414] px-5 py-3.5">
+                      <span className="flex items-center gap-3 font-body text-sm text-white/80">
+                        <Check />
+                        {item}
+                      </span>
+                      <span className="shrink-0 font-body text-xs text-white/30 line-through">{val}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Rise>
+
+          {/* price reveal panel */}
+          <Rise delay={0.1} className="mt-5">
+            <div className="relative overflow-hidden rounded-3xl border border-[var(--color-gold)]/35 bg-gradient-to-br from-[#1c1207] via-[#0f0f0f] to-[#0f0f0f] shadow-[0_0_80px_-30px_rgba(237,93,38,0.6)]">
+              <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[var(--color-gold)]/12 blur-3xl" />
+              <div className="relative grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+                {/* left: value breakdown */}
+                <div>
+                  <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35">If you bought it all separately</p>
+                  <p className="mt-2 font-display text-4xl text-white/30 line-through">₹14,500+</p>
+                  <div className="mt-6">
+                    <ValueMeter pay={6999} total={14500} />
+                  </div>
+                  <p className="mt-5 font-body text-sm leading-relaxed text-white/55">
+                    The Challenge bundles every plan, every session and every perk into a single price - so you commit once and never get nickel-and-dimed.
+                  </p>
+                </div>
+
+                {/* right: price + CTA */}
+                <div className="flex flex-col justify-center lg:border-l lg:border-white/10 lg:pl-12">
+                  <div className="flex items-center gap-3">
+                    <p className="font-body text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)]">You pay today</p>
+                    <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 font-body text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-400">
+                      Save ₹7,500 · 52% off
+                    </span>
+                  </div>
+                  <MoneyCounter to={6999} className="mt-2 block font-display leading-none text-[var(--color-gold)] text-[clamp(3.5rem,9vw,6rem)]" />
+                  <Magnetic className="mt-6 w-fit">
+                    <a
+                      href={APPLY}
+                      className="group inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-9 py-4 font-body text-[12px] uppercase tracking-[0.3em] text-white shadow-[0_0_40px_rgba(237,93,38,0.45)] transition-shadow hover:shadow-[0_0_70px_rgba(237,93,38,0.7)]"
+                    >
+                      <SplitHover>Claim Your Spot</SplitHover>
+                      <span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 transition-transform group-hover:translate-x-1">
+                        <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                      </span>
+                    </a>
+                  </Magnetic>
+                  <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 2 hours to confirm</p>
+                  <p className="mt-4 border-l-2 border-[var(--color-gold)]/40 pl-3 font-body text-[11px] leading-relaxed text-white/45">
+                    Only 15 spots - because every member gets a coach who tracks them personally. We can&apos;t fake that at scale, so the batch is capped.
+                  </p>
+                </div>
+              </div>
+
+              {/* bottom strip */}
+              <div className="relative grid grid-cols-2 divide-x divide-y divide-white/[0.07] border-t border-white/[0.07] sm:grid-cols-4 sm:divide-y-0">
+                <div className="col-span-2 flex flex-col items-center justify-center gap-1.5 px-3 py-5 text-center sm:col-span-1">
+                  <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Closes in</span>
+                  <TimerBlock compact />
+                </div>
+                <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
+                  <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Batch starts</span>
+                  <span className="font-display text-lg uppercase text-white">{BATCH_DATE}</span>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
+                  <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Spots left</span>
+                  <span className="font-display text-3xl text-[var(--color-gold)]">{slots}</span>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
+                  <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Guarantee</span>
+                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back</span>
+                </div>
+              </div>
+            </div>
+
+            {/* worst / best case */}
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#111111] p-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 font-display text-sm text-emerald-400">≥</span>
+                <div>
+                  <p className="font-body text-[9px] uppercase tracking-[0.3em] text-emerald-400">Worst case</p>
+                  <p className="mt-1 font-display text-lg text-white">18 fully coached sessions</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 rounded-2xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/[0.06] p-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/15">
+                  <Ico name="shield" className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="font-body text-[9px] uppercase tracking-[0.3em] text-[var(--color-gold)]">Best case</p>
+                  <p className="mt-1 font-display text-lg text-white">A new body + {GUARANTEE} back</p>
+                </div>
+              </div>
+            </div>
+          </Rise>
+        </div>
+      </section>
+
+      </div>
+
+      {/* ══ 3. TRANSFORMATIONS - GSAP pinned horizontal scroll (not zoomed: GSAP pin needs true viewport px) ═══════════════ */}
       <HorizontalTransforms />
 
-      {/* ══ 4. PAIN — "why isn't it working?" ════════════════════════════════ */}
+      <div style={{ zoom: 0.9 }}>
+
+      {/* ══ 4. PAIN - "why isn't it working?" ════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#0d0d0d] px-5 py-24 sm:px-10">
         <div className="mx-auto grid max-w-[1300px] items-center gap-12 lg:grid-cols-2">
           <Rise>
@@ -889,7 +1067,7 @@ export default function ChallengePage() {
                 "You train hard but have no idea if you're actually eating right.",
                 "Nobody at your gym would notice if you never came back.",
                 "You've watched the same belly fat refuse to move for years.",
-                "You're not lazy — you've just never had a real plan and a real coach.",
+                "You're not lazy - you've just never had a real plan and a real coach.",
               ].map((p) => (
                 <li key={p} className="flex items-start gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-gold)]" />
@@ -899,7 +1077,7 @@ export default function ChallengePage() {
             </ul>
             <div className="mt-8 rounded-2xl border border-[var(--color-gold)]/25 bg-[var(--color-gold)]/[0.06] p-6">
               <p className="font-body text-base leading-relaxed text-white/75">
-                You&apos;re not broken, and you don&apos;t lack willpower. You&apos;ve been missing a complete system — a plan
+                You&apos;re not broken, and you don&apos;t lack willpower. You&apos;ve been missing a complete system - a plan
                 built for your body, food built for your life, and someone who actually checks that you showed up.
               </p>
               <p className="mt-3 font-body text-sm font-semibold text-[var(--color-gold)]">That is exactly what the 6-Week Challenge gives you.</p>
@@ -907,11 +1085,15 @@ export default function ChallengePage() {
           </Rise>
 
           <Rise delay={0.1}>
-            <MediaSlot
-              id="pain-1"
-              ratio="4/5"
-              label="A relatable member mid-session — someone in their 30s, focused, real (not a glossy fitness model). Slightly moody lighting to match the section."
-            />
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#101010]" style={{ aspectRatio: "4/5" }}>
+              <Image
+                src="/challenge/pain.png"
+                alt="Member mid-session, focused"
+                fill
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
           </Rise>
         </div>
       </section>
@@ -984,7 +1166,7 @@ export default function ChallengePage() {
           </div>
 
           <Rise className="mt-9 text-center">
-            <ApplyBtn>Start the Challenge — {PRICE}</ApplyBtn>
+            <ApplyBtn>Start the Challenge - {PRICE}</ApplyBtn>
           </Rise>
         </div>
       </section>
@@ -1009,13 +1191,13 @@ export default function ChallengePage() {
               {
                 n: "01",
                 t: "Training",
-                d: "A personalised workout plan built for your goal and your level — adjusted every week as you get stronger. No copy-paste routines.",
+                d: "A personalised workout plan built for your goal and your level - adjusted every week as you get stronger. No copy-paste routines.",
                 slot: "pillar-training",
               },
               {
                 n: "02",
                 t: "Nutrition",
-                d: "A diet plan built around your food, your schedule and your preferences — with a grocery list and an eating-out guide you can actually follow.",
+                d: "A diet plan built around your food, your schedule and your preferences - with a grocery list and an eating-out guide you can actually follow.",
                 slot: "pillar-nutrition",
               },
               {
@@ -1028,7 +1210,15 @@ export default function ChallengePage() {
               <Rise key={p.t} delay={i * 0.08}>
                 <Tilt className="h-full">
                   <div className="group h-full overflow-hidden rounded-3xl border border-white/10 bg-[#111111] transition-colors hover:border-[var(--color-gold)]/40">
-                    <MediaSlot id={p.slot} ratio="4/3" rounded="rounded-none" label={`${p.t} pillar — visual representing ${p.t.toLowerCase()} (e.g. coaching, meal prep, check-in)`} />
+                    <div className="relative bg-[#101010]" style={{ aspectRatio: "4/3" }}>
+                      <Image
+                        src={`/challenge/${p.slot}.png`}
+                        alt={`${p.t} pillar`}
+                        fill
+                        sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
                     <div className="p-7">
                       <span className="font-display text-3xl text-[var(--color-gold)]/40">{p.n}</span>
                       <h3 className="mt-2 font-display text-2xl uppercase text-white">{p.t}</h3>
@@ -1042,7 +1232,7 @@ export default function ChallengePage() {
         </div>
       </section>
 
-      {/* ══ 6.5 QUALIFICATION — who it's for / not for + honesty ════════════ */}
+      {/* ══ 6.5 QUALIFICATION - who it's for / not for + honesty ════════════ */}
       <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
         <div className="mx-auto max-w-[1100px]">
           <Rise className="mb-12 text-center">
@@ -1066,7 +1256,7 @@ export default function ChallengePage() {
                     "You can commit to 3 sessions a week for 6 weeks.",
                     "You're done with random workouts and want a real plan.",
                     "You actually want someone holding you accountable.",
-                    "You're ready to start now — not \"someday\".",
+                    "You're ready to start now - not \"someday\".",
                     "You want results you can measure, not just a vibe.",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -1103,7 +1293,7 @@ export default function ChallengePage() {
             <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-white/10 bg-[#0d0d0d] p-6 text-center">
               <p className="font-body text-sm leading-relaxed text-white/60">
                 Straight up: we don&apos;t have a juice bar, a pool, or the lowest price in Paschim Vihar. What we have is a
-                coaching system that actually works — <span className="text-white">if you put in the work, we&apos;ll match it every step.</span>
+                coaching system that actually works - <span className="text-white">if you put in the work, we&apos;ll match it every step.</span>
               </p>
             </div>
           </Rise>
@@ -1134,7 +1324,7 @@ export default function ChallengePage() {
         </div>
       </section>
 
-      {/* ══ 8. VALUE STACK — bento + value meter ═════════════════════════════ */}
+      {/* ══ 8. VALUE STACK - bento + value meter ═════════════════════════════ */}
       <section id="offer" className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(237,93,38,0.1),transparent_60%)]" />
         <div className="relative mx-auto max-w-[1300px]">
@@ -1155,8 +1345,8 @@ export default function ChallengePage() {
           {/* featured 3 deliverables */}
           <div className="mt-14 grid gap-5 lg:grid-cols-3">
             {[
-              { icon: "dumbbell", t: "Personalised Training Plan", d: "Built for your goal and your level — and updated every single week as you get stronger.", v: "₹2,000 value" },
-              { icon: "plate", t: "Personalised Nutrition Plan", d: "Around your food, schedule and preferences — with a grocery list and an eating-out guide.", v: "₹2,500 value" },
+              { icon: "dumbbell", t: "Personalised Training Plan", d: "Built for your goal and your level - and updated every single week as you get stronger.", v: "₹2,000 value" },
+              { icon: "plate", t: "Personalised Nutrition Plan", d: "Around your food, schedule and preferences - with a grocery list and an eating-out guide.", v: "₹2,500 value" },
               { icon: "chat", t: "Weekly 1:1 Coaching × 6", d: "A dedicated trainer who knows your name and your numbers, checking in with you every week.", v: "₹3,000 value" },
             ].map((c, i) => (
               <Rise key={c.t} delay={i * 0.08}>
@@ -1212,7 +1402,7 @@ export default function ChallengePage() {
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-gold)]" /> Fast-action bonuses
                   </span>
                   <h3 className="mt-4 font-display text-2xl uppercase leading-tight text-white sm:text-3xl">
-                    Lock your spot before the batch fills — get these free
+                    Lock your spot before the batch fills - get these free
                   </h3>
                   <p className="mt-2 font-body text-sm text-white/50">
                     Bonuses are only for members who confirm before the 15 spots are gone. Once the batch is full, they&apos;re off the table.
@@ -1250,7 +1440,7 @@ export default function ChallengePage() {
                     <ValueMeter pay={6999} total={14500} />
                   </div>
                   <p className="mt-5 font-body text-sm leading-relaxed text-white/55">
-                    The Challenge bundles every plan, every session and every perk into a single price — so you commit once and never get nickel-and-dimed.
+                    The Challenge bundles every plan, every session and every perk into a single price - so you commit once and never get nickel-and-dimed.
                   </p>
                 </div>
 
@@ -1278,7 +1468,7 @@ export default function ChallengePage() {
                   </Magnetic>
                   <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 2 hours to confirm</p>
                   <p className="mt-4 border-l-2 border-[var(--color-gold)]/40 pl-3 font-body text-[11px] leading-relaxed text-white/45">
-                    Only 15 spots — because every member gets a coach who tracks them personally. We can&apos;t fake that at scale, so the batch is capped.
+                    Only 15 spots - because every member gets a coach who tracks them personally. We can&apos;t fake that at scale, so the batch is capped.
                   </p>
                 </div>
               </div>
@@ -1338,7 +1528,7 @@ export default function ChallengePage() {
               </SplitReveal>
             </h2>
             <p className="mx-auto mt-4 max-w-lg font-body text-sm text-white/40">
-              Short clips from members who finished the Challenge — in their own words.
+              In their own words - members who finished the Challenge.
             </p>
           </Rise>
 
@@ -1352,9 +1542,6 @@ export default function ChallengePage() {
           <div className="flex w-max animate-marquee marquee-gpu gap-5 group-hover:[animation-play-state:paused]">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((c, i) => (
               <div key={i} className="w-72 shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-[#111111] transition-colors hover:border-[var(--color-gold)]/40 sm:w-80">
-                <div className="relative">
-                  <MediaSlot id={`vid-testimonial-${(i % TESTIMONIALS.length) + 1}`} kind="video" ratio="4/3" rounded="rounded-none" label={`${c.name} — 20–40s selfie-style testimonial clip`} />
-                </div>
                 <div className="p-5">
                   <div className="mb-3 flex gap-0.5">
                     {[...Array(5)].map((_, k) => (
@@ -1426,23 +1613,86 @@ export default function ChallengePage() {
             </p>
           </Rise>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { role: "Head Coach", spec: "Strength & programming", slot: "coach-1" },
-              { role: "Nutrition Coach", spec: "Diet & habit change", slot: "coach-2" },
-              { role: "Fat-loss Coach", spec: "Conditioning & cardio", slot: "coach-3" },
-              { role: "Accountability Lead", spec: "Check-ins & mindset", slot: "coach-4" },
+              {
+                name: "Jatin Khatri",
+                spec: "Strength & conditioning",
+                img: "/trainer/jatin_khatri.png",
+                experience: "4 years experience",
+                trained: "100+ members trained",
+                certs: ["GGFI — Gold Gym Fitness Institute"],
+              },
+              {
+                name: "Amit Kumar",
+                spec: "Functional training & yoga",
+                img: "/trainer/amit_kumar.png",
+                experience: "3+ years experience (Yoga 2+ years)",
+                trained: "70+ members trained",
+                certs: ["K11 School of Fitness Science", "Masters in Yoga (M.A)"],
+              },
+              {
+                name: "Manoj Kumar",
+                spec: "Strength & programming",
+                img: "/trainer/manoj_kumar.png",
+                experience: "7+ years experience",
+                trained: "120+ members trained",
+                certs: ["GGFI Fitness Academy"],
+              },
+              {
+                name: "Ajay",
+                spec: "Fat-loss & conditioning",
+                img: "/trainer/ajay_rana.png",
+                experience: "2 years experience",
+                trained: "100+ members trained",
+                certs: ["K11 School of Fitness Science"],
+              },
+              {
+                name: "Neha",
+                spec: "Women's training & combat fitness",
+                img: "/trainer/neha.png",
+                experience: "5 years experience · 3 years army training",
+                trained: "50+ results delivered",
+                certs: ["2× Silver Medalist"],
+              },
+              {
+                name: "Hari Chhetri",
+                spec: "Personal training & sport nutrition",
+                img: "/trainer/hari_chhetri.PNG",
+                experience: "17 years experience",
+                trained: "500+ results delivered",
+                certs: ["GFFI Academy — Personal Fitness Training, Sport Nutrition"],
+              },
             ].map((c, i) => (
-              <Rise key={c.role} delay={i * 0.07}>
+              <Rise key={c.name} delay={i * 0.07}>
                 <Tilt>
-                  <div className="group overflow-hidden rounded-3xl border border-white/10 bg-[#111111] transition-colors hover:border-[var(--color-gold)]/40">
-                    <MediaSlot id={c.slot} ratio="3/4" rounded="rounded-none" label={`${c.role} portrait — confident, on the training floor, TSW branding visible`} />
+                  <div className="group h-full overflow-hidden rounded-3xl border border-white/10 bg-[#111111] transition-colors hover:border-[var(--color-gold)]/40">
+                    <div className="relative bg-[#101010]" style={{ aspectRatio: "3/4" }}>
+                      <Image
+                        src={c.img}
+                        alt={`${c.name} - TSW coach`}
+                        fill
+                        sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
                     <div className="p-5">
-                      <h3 className="font-display text-xl uppercase text-white">{c.role}</h3>
+                      <h3 className="font-display text-xl uppercase text-white">{c.name}</h3>
                       <p className="mt-1 font-body text-[10px] uppercase tracking-[0.3em] text-[var(--color-gold)]">{c.spec}</p>
-                      <p className="mt-3 font-body text-xs text-white/45">
-                        Replace with the real coach&apos;s name, certification and a one-line bio.
-                      </p>
+                      <div className="mt-3 space-y-1 font-body text-xs text-white/55">
+                        <p>{c.experience}</p>
+                        <p>{c.trained}</p>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {c.certs.map((cert) => (
+                          <span
+                            key={cert}
+                            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-body text-[10px] uppercase tracking-wider text-white/60"
+                          >
+                            {cert}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </Tilt>
@@ -1453,17 +1703,25 @@ export default function ChallengePage() {
       </section>
 
       {/* ══ 12. FOUNDER QUOTE ═════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
+      {/* <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
         <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
           <Rise>
-            <MediaSlot id="founder" ratio="4/5" label="Founder / head coach portrait — warm, credible, arms crossed or coaching a member." />
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#101010]" style={{ aspectRatio: "4/5" }}>
+              <video
+                src="/challenge/founder_video.mp4#t=0.1"
+                className="absolute inset-0 h-full w-full object-cover"
+                controls
+                playsInline
+                preload="metadata"
+              />
+            </div>
           </Rise>
           <Rise delay={0.1}>
             <Eyebrow>A note from the founder</Eyebrow>
             <blockquote className="mt-6 font-display uppercase leading-[1.05] tracking-tight text-white" style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.8rem)" }}>
               <SplitReveal mode="words" triggerOnScroll config={{ words: { duration: 0.6, stagger: 0.04 } }}>
-                &ldquo;We got tired of watching people pay for a membership, get handed a machine, and quietly quit. So we built the opposite — a plan, a coach, and a guarantee.&rdquo;
+                &ldquo;We got tired of watching people pay for a membership, get handed a machine, and quietly quit. So we built the opposite - a plan, a coach, and a guarantee.&rdquo;
               </SplitReveal>
             </blockquote>
             <p className="mt-7 font-body text-sm text-white/55">
@@ -1472,7 +1730,7 @@ export default function ChallengePage() {
             <p className="mt-1 font-body text-[11px] uppercase tracking-[0.3em] text-white/30">Founder · TSW Fitness</p>
           </Rise>
         </div>
-      </section>
+      </section> */}
 
       {/* ══ 13. GUARANTEE ═════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#0d0d0d] px-5 py-24 sm:px-10">
@@ -1492,9 +1750,9 @@ export default function ChallengePage() {
               </span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl font-body text-sm leading-relaxed text-white/55">
-              This isn&apos;t a marketing line — it&apos;s a written commitment. Hit both conditions below and we credit{" "}
+              This isn&apos;t a marketing line - it&apos;s a written commitment. Hit both conditions below and we credit{" "}
               <span className="text-white">{GUARANTEE}</span> toward your membership. We can put that in writing because the
-              system works when you actually show up — we&apos;ve watched it happen, batch after batch.
+              system works when you actually show up - we&apos;ve watched it happen, batch after batch.
             </p>
           </Rise>
 
@@ -1524,22 +1782,22 @@ export default function ChallengePage() {
             <Rise>
               <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-[#111111] p-7">
                 <span className="font-display text-5xl text-white/10">01</span>
-                <p className="-mt-4 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Condition 1 — Attendance</p>
+                <p className="-mt-4 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Condition 1 - Attendance</p>
                 <p className="mt-3 font-body text-sm leading-relaxed text-white/55">
-                  Attend all 18 sessions — 3 per week, 6 weeks, zero missed. Tracked by your trainer every single session.
+                  Attend all 18 sessions - 3 per week, 6 weeks, zero missed. Tracked by your trainer every single session.
                 </p>
               </div>
             </Rise>
             <Rise delay={0.08}>
               <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-[#111111] p-7">
                 <span className="font-display text-5xl text-white/10">02</span>
-                <p className="-mt-4 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Condition 2 — Progress (any 2 of 6)</p>
+                <p className="-mt-4 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Condition 2 - Progress (any 2 of 6)</p>
                 <ul className="mt-3 space-y-2">
                   {[
                     "Body weight / body-fat % drop",
                     "Visible inch loss",
                     "Strength gain in key lifts",
-                    "Full attendance — 18/18",
+                    "Full attendance - 18/18",
                     "Better endurance score",
                     "Day 1 vs Day 42 photos",
                   ].map((item) => (
@@ -1555,9 +1813,9 @@ export default function ChallengePage() {
               <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--color-gold)]/35 bg-gradient-to-b from-[#1a1005] to-[#0f0f0f] p-7">
                 <div aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--color-gold)]/12 blur-2xl" />
                 <span className="font-display text-5xl text-[var(--color-gold)]/25">✓</span>
-                <p className="-mt-3 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Result — {GUARANTEE} credit</p>
+                <p className="-mt-3 font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">Result - {GUARANTEE} credit</p>
                 <p className="mt-3 font-body text-sm leading-relaxed text-white/70">
-                  Credited toward any TSW membership. Assessed by your coach on Day 42 using your actual measurements — not opinion.
+                  Credited toward any TSW membership. Assessed by your coach on Day 42 using your actual measurements - not opinion.
                 </p>
                 <a
                   href={APPLY}
@@ -1736,6 +1994,7 @@ export default function ChallengePage() {
       </footer>
 
       <StickyBar />
+      </div>
     </div>
   );
 }

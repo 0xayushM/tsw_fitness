@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,6 +12,7 @@ if (typeof window !== "undefined") {
 type Transform = {
   name: string;
   lost: number;
+  gain: number;
   unit: string;
   duration: string;
   story: string;
@@ -19,64 +21,64 @@ type Transform = {
 
 const DATA: Transform[] = [
   {
-    name: "Priya S.",
-    lost: 6,
+    name: "Aman S.",
+    lost: 0,
+    gain: 6,
     unit: "kg",
     duration: "6 weeks",
-    story: "Down a dress size with a 9-month-old at home — her first programme she ever finished.",
+    story: "Went from rail-thin to a visibly stronger, muscular back - the first programme he ever finished.",
     stats: [
-      ["−6 kg", "Weight"],
-      ["−8 cm", "Waist"],
+      ["+6 kg", "Muscle"],
+      ["−2 cm", "Waist"],
       ["18/18", "Sessions"],
     ],
   },
   {
-    name: "Rahul M.",
-    lost: 8,
+    name: "Shourya K.",
+    lost: 0,
+    gain: 12,
     unit: "kg",
     duration: "6 weeks",
-    story: "Fixed years of nagging back pain and benched his own bodyweight for the first time.",
+    story: "Carved out a lean, athletic core and benched his own bodyweight for the first time.",
     stats: [
-      ["−8 kg", "Weight"],
-      ["+20 kg", "Bench"],
+      ["+12 kg", "Weight"],
+      ["+8 kg", "Muscle"],
       ["18/18", "Sessions"],
     ],
   },
   {
-    name: "Anjali K.",
-    lost: 5,
+    name: "Uday S.",
+    lost: 0,
+    gain: 20,
     unit: "kg",
     duration: "6 weeks",
-    story: "A vegetarian diet plan that fit her office lunches — finally something sustainable.",
+    story: "A simple veg diet that fit his office lunches - finally something he could actually stick to.",
     stats: [
-      ["−5 kg", "Weight"],
-      ["−7 cm", "Hips"],
+      ["+12 kg", "Muscle"],
+      ["+20 kg", "Weight"],
       ["₹3,000", "Earned"],
     ],
   },
   {
-    name: "Vikram T.",
-    lost: 7,
+    name: "Karshian K.",
+    lost: 18,
+    gain: 0,
     unit: "kg",
     duration: "6 weeks",
     story: "Off the evening snacking, sleeping through the night, and 10 cm gone from his waist.",
     stats: [
-      ["−7 kg", "Weight"],
+      ["−18 kg", "Weight"],
       ["−10 cm", "Waist"],
       ["18/18", "Sessions"],
     ],
   },
 ];
 
-// labelled placeholder (matches MEDIA-NEEDED.md ids: transform-N-before / -after)
-function Slot({ id, label, tag, tagGold }: { id: string; label: string; tag: string; tagGold?: boolean }) {
+// before / after client photo
+function Slot({ src, label, tag, tagGold }: { src: string; label: string; tag: string; tagGold?: boolean }) {
   return (
-    <div className="relative flex h-full items-center justify-center overflow-hidden rounded-2xl border border-dashed border-[var(--color-gold)]/25 bg-[#101010]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg, rgba(237,93,38,0.5) 0 1px, transparent 1px 11px)" }}
-      />
+    <div className="relative flex h-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#101010]">
+      <Image src={src} alt={label} fill sizes="(max-width:1024px) 45vw, 28vw" className="object-cover" />
       <span
         className={`absolute left-3 top-3 z-10 rounded-full px-3 py-1 font-body text-[9px] uppercase tracking-[0.3em] ${
           tagGold ? "bg-[var(--color-gold)] text-white" : "bg-black/65 text-white/70 backdrop-blur"
@@ -84,10 +86,6 @@ function Slot({ id, label, tag, tagGold }: { id: string; label: string; tag: str
       >
         {tag}
       </span>
-      <div className="relative z-[1] flex max-w-[85%] flex-col items-center gap-1.5 px-4 text-center">
-        <span className="font-body text-[9px] uppercase tracking-[0.3em] text-[var(--color-gold)]/80">image · {id}</span>
-        <span className="font-body text-[11px] leading-snug text-white/45">{label}</span>
-      </div>
     </div>
   );
 }
@@ -100,7 +98,7 @@ export default function HorizontalTransforms() {
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // On small screens (and reduced motion) fall back to native horizontal swipe — no pin.
+    // On small screens (and reduced motion) fall back to native horizontal swipe - no pin.
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (prefersReduced || !isDesktop) return;
 
@@ -155,7 +153,7 @@ export default function HorizontalTransforms() {
             <span className="text-[var(--color-gold)]">Real Lives.</span>
           </h2>
           <p className="mt-7 max-w-md font-body text-base leading-relaxed text-white/55">
-            Keep scrolling — every member below was measured on Day 1 and Day 42. These are their actual results, side by side.
+            Keep scrolling - every member below was measured on Day 1 and Day 42. These are their actual results, side by side.
           </p>
           <div className="mt-8 hidden items-center gap-3 text-white/40 lg:flex">
             <span className="font-body text-[10px] uppercase tracking-[0.35em]">Scroll to explore</span>
@@ -167,7 +165,7 @@ export default function HorizontalTransforms() {
 
         {/* MEMBER PANELS */}
         {DATA.map((t, i) => {
-          const slug = `transform-${i + 1}`;
+          const n = i + 1;
           return (
             <div key={t.name} className="flex w-[90vw] shrink-0 items-center px-2 sm:w-[80vw] lg:h-screen lg:w-[75vw] lg:px-[6vw]">
               <div className="grid w-full items-center gap-8 lg:grid-cols-[1fr_1.05fr]">
@@ -176,9 +174,9 @@ export default function HorizontalTransforms() {
                   <span className="font-display text-7xl text-white/10">0{i + 1}</span>
                   <div className="-mt-6 flex items-end gap-3">
                     <span className="font-display leading-none text-[var(--color-gold)]" style={{ fontSize: "clamp(4.5rem, 11vw, 9rem)" }}>
-                      {t.lost}
+                      {t.lost == 0 ? t.gain : t.lost}
                     </span>
-                    <span className="mb-4 font-display text-3xl uppercase text-white">{t.unit} lost</span>
+                    <span className="mb-4 font-display text-3xl uppercase text-white">{t.unit}{t.lost == 0 ? " gained" : " lost"}</span>
                   </div>
                   <p className="mt-1 font-body text-[10px] uppercase tracking-[0.4em] text-white/35">
                     In {t.duration} · 18 sessions · full attendance
@@ -197,8 +195,8 @@ export default function HorizontalTransforms() {
                 {/* before / after */}
                 <div>
                   <div className="grid grid-cols-2 gap-3" style={{ aspectRatio: "3/2" }}>
-                    <Slot id={`${slug}-before`} tag="Day 1" label={`${t.name} — Day 1 photo`} />
-                    <Slot id={`${slug}-after`} tag="Day 42" tagGold label={`${t.name} — Day 42 photo`} />
+                    <Slot src={`/challenge/client${n}_1.png`} tag="Day 1" label={`${t.name} - Day 1 photo`} />
+                    <Slot src={`/challenge/client${n}_2.png`} tag="Day 42" tagGold label={`${t.name} - Day 42 photo`} />
                   </div>
                   <div className="mt-3 grid grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-[#111111]">
                     {t.stats.map(([v, l]) => (

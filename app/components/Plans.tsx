@@ -40,12 +40,12 @@ const PLANS: Plan[] = [
     months: 1,
     price: 4000,
     totalValue: 7000,
-    positioning: "Start today. 30 days to experience everything TSW has to offer — zero long-term commitment, zero excuses.",
+    positioning: "Start today. 30 days to experience everything TSW has to offer - zero long-term commitment, zero excuses.",
     items: [
       { key: "access", label: "Full gym access 24/7", value: 4000 },
       { key: "steam", label: "Steam room access", value: 1500 },
       { key: "parking", label: "Parking (covered)", value: 500 },
-      { key: "workout", label: "Personalized workout plan — Week 1", value: 1000 },
+      { key: "workout", label: "Personalized workout plan - Week 1", value: 1000 },
     ],
   },
   {
@@ -70,7 +70,7 @@ const PLANS: Plan[] = [
     months: 6,
     price: 12000,
     totalValue: 38500,
-    positioning: "Six months from now, people will notice before you do. Every tool to go all in — tracked every step of the way.",
+    positioning: "Six months from now, people will notice before you do. Every tool to go all in - tracked every step of the way.",
     items: [
       { key: "access", label: "Full gym access 24/7", value: 12000 },
       { key: "steam", label: "Steam room access", value: 5000 },
@@ -137,7 +137,7 @@ export default function Plans() {
           </h2>
           <p className="max-w-xl font-body text-sm leading-relaxed text-white/55">
             Every membership is stacked with real value. We show you what it&apos;s
-            worth — then what you actually pay. The difference stays in your
+            worth - then what you actually pay. The difference stays in your
             pocket.
           </p>
         </div>
@@ -249,7 +249,7 @@ export default function Plans() {
                     key={plan.tag}
                     className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/5 text-sm text-white/25"
                   >
-                    —
+                    -
                   </span>
                 );
               })}
@@ -319,7 +319,7 @@ function PlanHeader({ plan }: { plan: Plan }) {
         </p>
         {plan.highlight && (
           <p className="mt-1 font-body text-[10px] text-white/40">
-            Just ₹{perDay}/day — less than your morning chai
+            Just ₹{perDay}/day - less than your morning chai
           </p>
         )}
       </div>

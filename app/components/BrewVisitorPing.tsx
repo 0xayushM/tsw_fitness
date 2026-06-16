@@ -18,7 +18,7 @@ export default function BrewVisitorPing() {
       if (sessionStorage.getItem(key)) return;
       sessionStorage.setItem(key, "1");
     } catch {
-      /* storage blocked — still attempt one beacon */
+      /* storage blocked - still attempt one beacon */
     }
 
     void fetch("/api/lead", {

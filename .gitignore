@@ -30,7 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files — prefer `.env.local`; keep `.env.example` committed
+# env files - prefer `.env.local`; keep `.env.example` committed
 .env
 .env*.local
 !.env.example

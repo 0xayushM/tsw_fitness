@@ -84,7 +84,7 @@ export default function Loader() {
       className="fixed inset-0 z-[9999] bg-[var(--color-orange)]"
       style={{ willChange: "transform" }}
     >
-      {/* ── Vertical bar — left edge ── */}
+      {/* ── Vertical bar - left edge ── */}
       <div className="absolute left-0 top-0 h-full w-[5px] bg-black/15">
         <div
           ref={barFillRef}
@@ -93,7 +93,7 @@ export default function Loader() {
         />
       </div>
 
-      {/* ── Text — bottom right ── */}
+      {/* ── Text - bottom right ── */}
       <div
         ref={textRef}
         className="absolute bottom-10 right-8 select-none text-right"
@@ -111,7 +111,7 @@ export default function Loader() {
           TSW
         </div>
 
-        {/* Black fill layer — clips left-to-right */}
+        {/* Black fill layer - clips left-to-right */}
         <div
           ref={fillTextRef}
           className="font-agharti leading-none tracking-none absolute inset-0 text-right"
@@ -125,7 +125,7 @@ export default function Loader() {
           TSW
         </div>
 
-        <span className="sr-only">TSW Fitness — loading</span>
+        <span className="sr-only">TSW Fitness - loading</span>
 
         {/* Percentage */}
         <div className="mt-3 font-agharti text-[11px] tracking-[0.35em] text-black/40 uppercase">

@@ -10,9 +10,9 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
   "https://tswfitness.com";
 
-const defaultTitle = "TSW Fitness — It's not fitness. It's life.";
+const defaultTitle = "TSW Fitness - It's not fitness. It's life.";
 const defaultDescription =
-  "TSW Fitness is a high-energy gym in New Delhi — expert coaches, 45-minute sessions, and purpose-built training floors. Tours, memberships, and class info.";
+  "TSW Fitness is a high-energy gym in New Delhi - expert coaches, 45-minute sessions, and purpose-built training floors. Tours, memberships, and class info.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

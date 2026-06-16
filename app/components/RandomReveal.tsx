@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { registerPluginOnce } from "../lib/gsap-helpers";
 
 /**
- * RandomReveal — fades characters in using a random-order stagger, so the
+ * RandomReveal - fades characters in using a random-order stagger, so the
  * glyphs "pop" into place one by one in no particular reading order (the
  * effect seen on TSW Fitness' group-classes circle).
  *
@@ -20,7 +20,7 @@ import { registerPluginOnce } from "../lib/gsap-helpers";
  *  - `autoAlpha` hides chars via opacity+visibility before the tween fires,
  *    so there's never a flash of complete text before the animation starts.
  *  - ScrollTrigger fires once on viewport entry. ScrollSmoother picks up
- *    the trigger automatically — no `scroller` override required.
+ *    the trigger automatically - no `scroller` override required.
  */
 type RandomRevealProps = {
   children: ReactNode;
