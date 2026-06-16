@@ -916,11 +916,75 @@ export default function ChallengePage() {
       </section>
 
       {/* ══ 2. PRICING SNAPSHOT (mirror of section 8 offer) ═════════════════ */}
-      <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
+      <section id="offer" className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(237,93,38,0.1),transparent_60%)]" />
         <div className="relative mx-auto max-w-[1300px]">
+          {/* header */}
+          <Rise className="mx-auto max-w-2xl text-center">
+            <Eyebrow>Everything you get</Eyebrow>
+            <h2 className="mt-5 font-display uppercase leading-[1.04] tracking-tight text-white" style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)" }}>
+              <SplitReveal mode="chars" triggerOnScroll config={{ chars: { duration: 0.8, stagger: 0.02 } }}>Everything Included.</SplitReveal>
+              <span className="mt-1 block text-[var(--color-gold)]">
+                <SplitReveal mode="chars" triggerOnScroll delay={0.1} config={{ chars: { duration: 0.8, stagger: 0.02 } }}>One Simple Price.</SplitReveal>
+              </span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-md font-body text-sm leading-relaxed text-white/55">
+              No upsells. No hidden PT charges. No paying extra for your diet plan. It&apos;s all in your {PRICE}.
+            </p>
+          </Rise>
+
+          {/* featured 3 deliverables */}
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            {[
+              { icon: "dumbbell", t: "Personalised Training Plan", d: "Built for your goal and your level - and updated every single week as you get stronger.", v: "₹2,000 value" },
+              { icon: "plate", t: "Personalised Nutrition Plan", d: "Around your food, schedule and preferences - with a grocery list and an eating-out guide.", v: "₹2,500 value" },
+              { icon: "chat", t: "Weekly 1:1 Coaching × 6", d: "A dedicated trainer who knows your name and your numbers, checking in with you every week.", v: "₹3,000 value" },
+            ].map((c, i) => (
+              <Rise key={c.t} delay={i * 0.08}>
+                <Tilt className="h-full" max={6}>
+                  <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#141414] to-[#0e0e0e] p-7 transition-colors hover:border-[var(--color-gold)]/40">
+                    <div aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--color-gold)]/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10">
+                      <Ico name={c.icon} className="h-7 w-7" />
+                    </div>
+                    <h3 className="mt-5 font-display text-2xl uppercase leading-tight text-white">{c.t}</h3>
+                    <p className="mt-3 font-body text-sm leading-relaxed text-white/55">{c.d}</p>
+                    <span className="mt-5 inline-block rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-body text-[10px] uppercase tracking-[0.25em] text-white/40">
+                      {c.v}
+                    </span>
+                  </div>
+                </Tilt>
+              </Rise>
+            ))}
+          </div>
+
+          {/* secondary inclusions */}
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: "clock", t: "Full gym access", s: "7 days a week", v: "₹4,000" },
+              { icon: "steam", t: "Steam & recovery", s: "Unwind and repair", v: "₹1,500" },
+              { icon: "chart", t: "Progress tracking", s: "Day 1 & Day 42", v: "₹500" },
+              { icon: "users", t: "Accountability group", s: "Private WhatsApp", v: "Included" },
+              { icon: "ticket", t: "1 guest pass", s: "Bring a friend", v: "₹500" },
+              { icon: "car", t: "Covered parking", s: "Hassle-free", v: "₹500" },
+              { icon: "award", t: "Completion certificate", s: "Earn your finish", v: "Included" },
+              { icon: "shield", t: "No PT charges, ever", s: "Zero upsells", v: "Included" },
+            ].map((c, i) => (
+              <Rise key={c.t} delay={i * 0.04}>
+                <div className="group flex h-full items-start gap-4 rounded-2xl border border-white/[0.07] bg-[#111111] p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)]/30">
+                  <Ico name={c.icon} className="mt-0.5 h-6 w-6 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="font-body text-sm font-semibold text-white">{c.t}</p>
+                    <p className="font-body text-xs text-white/40">{c.s}</p>
+                    <span className="mt-2 inline-block font-body text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)]/70">{c.v}</span>
+                  </div>
+                </div>
+              </Rise>
+            ))}
+          </div>
+
           {/* fast-action bonuses */}
-          <Rise>
+          <Rise delay={0.08} className="mt-5">
             <div className="relative overflow-hidden rounded-3xl border border-dashed border-[var(--color-gold)]/40 bg-[#0f0c08] p-7 sm:p-8">
               <div aria-hidden className="pointer-events-none absolute -left-16 -top-16 h-40 w-40 rounded-full bg-[var(--color-gold)]/10 blur-3xl" />
               <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -1016,7 +1080,7 @@ export default function ChallengePage() {
                 </div>
                 <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
                   <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Guarantee</span>
-                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back in membership credits</span>
+                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back</span>
                 </div>
               </div>
             </div>
@@ -1325,75 +1389,11 @@ export default function ChallengePage() {
       </section>
 
       {/* ══ 8. VALUE STACK - bento + value meter ═════════════════════════════ */}
-      <section id="offer" className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
+      <section className="relative overflow-hidden bg-[#0a0a0a] px-5 py-24 sm:px-10">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(237,93,38,0.1),transparent_60%)]" />
         <div className="relative mx-auto max-w-[1300px]">
-          {/* header */}
-          <Rise className="mx-auto max-w-2xl text-center">
-            <Eyebrow>Everything you get</Eyebrow>
-            <h2 className="mt-5 font-display uppercase leading-[1.04] tracking-tight text-white" style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)" }}>
-              <SplitReveal mode="chars" triggerOnScroll config={{ chars: { duration: 0.8, stagger: 0.02 } }}>Everything Included.</SplitReveal>
-              <span className="mt-1 block text-[var(--color-gold)]">
-                <SplitReveal mode="chars" triggerOnScroll delay={0.1} config={{ chars: { duration: 0.8, stagger: 0.02 } }}>One Simple Price.</SplitReveal>
-              </span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-md font-body text-sm leading-relaxed text-white/55">
-              No upsells. No hidden PT charges. No paying extra for your diet plan. It&apos;s all in your {PRICE}.
-            </p>
-          </Rise>
-
-          {/* featured 3 deliverables */}
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {[
-              { icon: "dumbbell", t: "Personalised Training Plan", d: "Built for your goal and your level - and updated every single week as you get stronger.", v: "₹2,000 value" },
-              { icon: "plate", t: "Personalised Nutrition Plan", d: "Around your food, schedule and preferences - with a grocery list and an eating-out guide.", v: "₹2,500 value" },
-              { icon: "chat", t: "Weekly 1:1 Coaching × 6", d: "A dedicated trainer who knows your name and your numbers, checking in with you every week.", v: "₹3,000 value" },
-            ].map((c, i) => (
-              <Rise key={c.t} delay={i * 0.08}>
-                <Tilt className="h-full" max={6}>
-                  <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#141414] to-[#0e0e0e] p-7 transition-colors hover:border-[var(--color-gold)]/40">
-                    <div aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--color-gold)]/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10">
-                      <Ico name={c.icon} className="h-7 w-7" />
-                    </div>
-                    <h3 className="mt-5 font-display text-2xl uppercase leading-tight text-white">{c.t}</h3>
-                    <p className="mt-3 font-body text-sm leading-relaxed text-white/55">{c.d}</p>
-                    <span className="mt-5 inline-block rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-body text-[10px] uppercase tracking-[0.25em] text-white/40">
-                      {c.v}
-                    </span>
-                  </div>
-                </Tilt>
-              </Rise>
-            ))}
-          </div>
-
-          {/* secondary inclusions */}
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: "clock", t: "Full gym access", s: "7 days a week", v: "₹4,000" },
-              { icon: "steam", t: "Steam & recovery", s: "Unwind and repair", v: "₹1,500" },
-              { icon: "chart", t: "Progress tracking", s: "Day 1 & Day 42", v: "₹500" },
-              { icon: "users", t: "Accountability group", s: "Private WhatsApp", v: "Included" },
-              { icon: "ticket", t: "1 guest pass", s: "Bring a friend", v: "₹500" },
-              { icon: "car", t: "Covered parking", s: "Hassle-free", v: "₹500" },
-              { icon: "award", t: "Completion certificate", s: "Earn your finish", v: "Included" },
-              { icon: "shield", t: "No PT charges, ever", s: "Zero upsells", v: "Included" },
-            ].map((c, i) => (
-              <Rise key={c.t} delay={i * 0.04}>
-                <div className="group flex h-full items-start gap-4 rounded-2xl border border-white/[0.07] bg-[#111111] p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)]/30">
-                  <Ico name={c.icon} className="mt-0.5 h-6 w-6 shrink-0" />
-                  <div className="min-w-0">
-                    <p className="font-body text-sm font-semibold text-white">{c.t}</p>
-                    <p className="font-body text-xs text-white/40">{c.s}</p>
-                    <span className="mt-2 inline-block font-body text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)]/70">{c.v}</span>
-                  </div>
-                </div>
-              </Rise>
-            ))}
-          </div>
-
           {/* fast-action bonuses */}
-          <Rise delay={0.08} className="mt-5">
+          <Rise>
             <div className="relative overflow-hidden rounded-3xl border border-dashed border-[var(--color-gold)]/40 bg-[#0f0c08] p-7 sm:p-8">
               <div aria-hidden className="pointer-events-none absolute -left-16 -top-16 h-40 w-40 rounded-full bg-[var(--color-gold)]/10 blur-3xl" />
               <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -1489,7 +1489,7 @@ export default function ChallengePage() {
                 </div>
                 <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
                   <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Guarantee</span>
-                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back</span>
+                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back in membership credits</span>
                 </div>
               </div>
             </div>
