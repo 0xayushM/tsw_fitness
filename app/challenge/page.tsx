@@ -297,7 +297,7 @@ const FAQS = [
   },
   {
     q: "When do I pay?",
-    a: "Not now. You apply, we call you within 2 hours to confirm your spot and answer questions, and you only pay once you've decided to lock in your place in the batch.",
+    a: "Not now. You apply, we call you within 24 hours to confirm your spot and answer questions, and you only pay once you've decided to lock in your place in the batch.",
   },
 ];
 
@@ -792,7 +792,7 @@ export default function ChallengePage() {
               <p className="mt-7 max-w-xl font-body text-lg leading-relaxed text-white/80">
                 Paschim Vihar&apos;s only structured 6-week challenge built on all three pillars -{" "}
                 <span className="font-semibold text-white">training, nutrition &amp; weekly 1:1 coaching</span>. Do the work and
-                you&apos;ll see real change, and we hand you <span className="font-semibold text-[var(--color-gold)]">{GUARANTEE} back</span>. Simple.
+                you&apos;ll see real change, and we hand you <span className="font-semibold text-[var(--color-gold)]">{GUARANTEE} back in membership credits</span>. Simple.
               </p>
             </Rise>
 
@@ -833,7 +833,7 @@ export default function ChallengePage() {
                 </a>
               </div>
               <p className="mt-4 font-body text-[11px] text-white/35">
-                No payment now · We call within 2 hours · Batch starts {BATCH_DATE}
+                No payment now · We call within 24 hours · Batch starts {BATCH_DATE}
               </p>
             </Rise>
 
@@ -993,7 +993,7 @@ export default function ChallengePage() {
                       </span>
                     </a>
                   </Magnetic>
-                  <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 2 hours to confirm</p>
+                  <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 24 hours to confirm</p>
                   <p className="mt-4 border-l-2 border-[var(--color-gold)]/40 pl-3 font-body text-[11px] leading-relaxed text-white/45">
                     Only 15 spots - because every member gets a coach who tracks them personally. We can&apos;t fake that at scale, so the batch is capped.
                   </p>
@@ -1016,7 +1016,7 @@ export default function ChallengePage() {
                 </div>
                 <div className="flex flex-col items-center justify-center gap-1 px-3 py-5 text-center">
                   <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/35">Guarantee</span>
-                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back</span>
+                  <span className="font-display text-lg uppercase text-white">{GUARANTEE} back in membership credits</span>
                 </div>
               </div>
             </div>
@@ -1466,7 +1466,7 @@ export default function ChallengePage() {
                       </span>
                     </a>
                   </Magnetic>
-                  <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 2 hours to confirm</p>
+                  <p className="mt-3 font-body text-[11px] text-white/35">No payment now · we call within 24 hours to confirm</p>
                   <p className="mt-4 border-l-2 border-[var(--color-gold)]/40 pl-3 font-body text-[11px] leading-relaxed text-white/45">
                     Only 15 spots - because every member gets a coach who tracks them personally. We can&apos;t fake that at scale, so the batch is capped.
                   </p>
@@ -1575,7 +1575,7 @@ export default function ChallengePage() {
             <div className="pointer-events-none absolute left-0 right-0 top-10 hidden h-px bg-white/10 sm:block" />
             <GrowLine className="pointer-events-none absolute left-0 right-0 top-10 hidden h-[2px] sm:block" />
             {[
-              { n: "01", title: "Apply", desc: "Fill the 60-second form. We call within 2 hours to confirm your spot." },
+              { n: "01", title: "Apply", desc: "Fill the 60-second form. We call within 24 hours to confirm your spot." },
               { n: "02", title: "Day 1", desc: "Full assessment. Personalised workout + diet plan in hand. Baseline photos and measurements." },
               { n: "03", title: "Weeks 1–4", desc: "Train 3×/week. Weekly 1:1 check-in. Nutrition adjusted as you go." },
               { n: "04", title: "Weeks 5–6", desc: "Final push. Maximum effort. Your trainer tracks every session." },
@@ -1616,12 +1616,20 @@ export default function ChallengePage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                name: "Jatin Khatri",
-                spec: "Strength & conditioning",
-                img: "/trainer/jatin_khatri.png",
-                experience: "4 years experience",
-                trained: "100+ members trained",
-                certs: ["GGFI — Gold Gym Fitness Institute"],
+                name: "Hari Chhetri",
+                spec: "Personal training & sport nutrition",
+                img: "/trainer/hari_chhetri.PNG",
+                experience: "17 years experience",
+                trained: "500+ results delivered",
+                certs: ["GFFI Academy — Personal Fitness Training, Sport Nutrition"],
+              },
+              {
+                name: "Manoj Kumar",
+                spec: "Strength & programming",
+                img: "/trainer/manoj_kumar.png",
+                experience: "7+ years experience",
+                trained: "120+ members trained",
+                certs: ["GGFI Fitness Academy"],
               },
               {
                 name: "Amit Kumar",
@@ -1632,13 +1640,14 @@ export default function ChallengePage() {
                 certs: ["K11 School of Fitness Science", "Masters in Yoga (M.A)"],
               },
               {
-                name: "Manoj Kumar",
-                spec: "Strength & programming",
-                img: "/trainer/manoj_kumar.png",
-                experience: "7+ years experience",
-                trained: "120+ members trained",
-                certs: ["GGFI Fitness Academy"],
+                name: "Jatin Khatri",
+                spec: "Strength & conditioning",
+                img: "/trainer/jatin_khatri.png",
+                experience: "4 years experience",
+                trained: "100+ members trained",
+                certs: ["GGFI — Gold Gym Fitness Institute"],
               },
+              
               {
                 name: "Ajay",
                 spec: "Fat-loss & conditioning",
@@ -1655,14 +1664,6 @@ export default function ChallengePage() {
                 trained: "50+ results delivered",
                 certs: ["2× Silver Medalist"],
               },
-              {
-                name: "Hari Chhetri",
-                spec: "Personal training & sport nutrition",
-                img: "/trainer/hari_chhetri.PNG",
-                experience: "17 years experience",
-                trained: "500+ results delivered",
-                certs: ["GFFI Academy — Personal Fitness Training, Sport Nutrition"],
-              },
             ].map((c, i) => (
               <Rise key={c.name} delay={i * 0.07}>
                 <Tilt>
@@ -1677,9 +1678,9 @@ export default function ChallengePage() {
                       />
                     </div>
                     <div className="p-5">
-                      <h3 className="font-display text-xl uppercase text-white">{c.name}</h3>
-                      <p className="mt-1 font-body text-[10px] uppercase tracking-[0.3em] text-[var(--color-gold)]">{c.spec}</p>
-                      <div className="mt-3 space-y-1 font-body text-xs text-white/55">
+                      <h3 className="font-display text-2xl md:text-3xl uppercase text-white">{c.name}</h3>
+                      <p className="mt-1 font-body text-[10px] md:text-xs uppercase tracking-[0.3em] text-[var(--color-gold)]">{c.spec}</p>
+                      <div className="mt-3 space-y-1 font-body text-xs md:text-sm text-white/55">
                         <p>{c.experience}</p>
                         <p>{c.trained}</p>
                       </div>
@@ -1741,17 +1742,17 @@ export default function ChallengePage() {
             <Eyebrow>The guarantee</Eyebrow>
             <h2 className="mt-5 font-display uppercase leading-[1.04] tracking-tight text-white" style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}>
               <span className="block">
-                <SplitReveal mode="chars" triggerOnScroll config={{ chars: { duration: 0.8, stagger: 0.02 } }}>Do The Work.</SplitReveal>
+                <SplitReveal mode="chars" triggerOnScroll config={{ chars: { duration: 0.8, stagger: 0.02 } }}>Achieve your goal.</SplitReveal>
               </span>
               <span className="block text-[var(--color-gold)]">
                 <SplitReveal mode="chars" triggerOnScroll delay={0.15} config={{ chars: { duration: 0.8, stagger: 0.02 } }}>
-                  Or Get {GUARANTEE} Back.
+                  And Get {GUARANTEE} Back in membership credits.
                 </SplitReveal>
               </span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl font-body text-sm leading-relaxed text-white/55">
               This isn&apos;t a marketing line - it&apos;s a written commitment. Hit both conditions below and we credit{" "}
-              <span className="text-white">{GUARANTEE}</span> toward your membership. We can put that in writing because the
+              <span className="text-white">{GUARANTEE}{" "}</span> toward your membership. We can put that in writing because the
               system works when you actually show up - we&apos;ve watched it happen, batch after batch.
             </p>
           </Rise>
@@ -1882,7 +1883,7 @@ export default function ChallengePage() {
                 </div>
                 <h3 className="font-display text-3xl uppercase text-white">Application Received</h3>
                 <p className="mt-3 font-body text-sm leading-relaxed text-white/50">
-                  We&apos;ll call you within 2 hours to confirm your spot. Your transformation starts {BATCH_DATE}.
+                  We&apos;ll call you within 24 hours to confirm your spot. Your transformation starts {BATCH_DATE}.
                 </p>
               </div>
             ) : (
