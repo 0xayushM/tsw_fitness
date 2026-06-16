@@ -21,7 +21,7 @@ export default function FindGym() {
           </p>
           <p className="mt-1 max-w-xl font-body text-sm leading-relaxed text-white/55">
             Four locations across the city. Same energy. Same standards. One
-            membership gets you in, any time — and our downtown club is the
+            membership gets you in, any time - and our downtown club is the
             mothership.
           </p>
           <a

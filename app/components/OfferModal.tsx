@@ -8,7 +8,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 function scrollToContact() {
   const target = document.getElementById("contact");
   if (!target) return;
-  // Same pattern as HashLinkRouter — use the shared GSAP module instance,
+  // Same pattern as HashLinkRouter - use the shared GSAP module instance,
   // NOT window.ScrollSmoother (which doesn't exist and falls back to native
   // scrollIntoView, which fights the virtual scroll and breaks positioning).
   const smoother = ScrollSmoother.get();

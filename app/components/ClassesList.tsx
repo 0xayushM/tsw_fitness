@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 /**
- * ClassesList — the interactive discipline list.
+ * ClassesList - the interactive discipline list.
  *
  * Two concurrent effects on hover:
  *  - A full-width orange panel slides from top-to-bottom inside the row
@@ -18,7 +18,7 @@ import { createPortal } from "react-dom";
  *
  * Implementation notes:
  *  - Image tracking uses one shared DOM node rather than per-row images,
- *    so crossing rows never unmounts/remounts anything — just swaps src.
+ *    so crossing rows never unmounts/remounts anything - just swaps src.
  *  - We animate via `translate3d` for GPU compositing. No rAF throttle
  *    needed because `onMouseMove` naturally syncs with the browser paint.
  *  - `pointer-events-none` on the preview so it never blocks its own
@@ -45,10 +45,10 @@ export default function ClassesList({ items }: { items: ClassItem[] }) {
   // drifts between sub-elements.
   //
   // The translate chain is:
-  //   1. translate3d(clientX, clientY, 0) — moves the *top-left* of the
+  //   1. translate3d(clientX, clientY, 0) - moves the *top-left* of the
   //      image to the pointer position (viewport coords, since the node is
   //      portaled to <body>, outside the SmoothScroll transform).
-  //   2. translate(-50%, -50%) — re-centers the image on the pointer so it
+  //   2. translate(-50%, -50%) - re-centers the image on the pointer so it
   //      visually replaces the cursor.
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -89,7 +89,7 @@ export default function ClassesList({ items }: { items: ClassItem[] }) {
                 {c.name}
               </span>
 
-              {/* Columns — hidden on small screens to keep the row height
+              {/* Columns - hidden on small screens to keep the row height
                   readable. Opacity shifts subtly on hover so the values
                   stay legible against the orange background. */}
               <Meta label="Goal: " value={c.goal} className="hidden sm:block" />
@@ -114,7 +114,7 @@ export default function ClassesList({ items }: { items: ClassItem[] }) {
       </ul>
 
       {/* Cursor-following preview. Portaled to <body> to escape the
-          SmoothScroll wrapper's CSS transform — `position: fixed` is
+          SmoothScroll wrapper's CSS transform - `position: fixed` is
           scoped to the nearest transformed ancestor, not the viewport,
           so without the portal the node would either clip or scroll. */}
       {mounted &&

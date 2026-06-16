@@ -129,7 +129,7 @@ body {
 }
 
 /* GPU-accelerated marquee: animate on compositor thread.
-   NOTE: backface-visibility: hidden is intentionally omitted — it creates a
+   NOTE: backface-visibility: hidden is intentionally omitted - it creates a
    stacking context that prevents <video> textures from compositing correctly
    on desktop browsers (videos go invisible). Use translateZ(0) on individual
    video cards instead. */
@@ -143,6 +143,17 @@ body {
 }
 
 .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+/* Panning gradient (used for animated CTA borders/glows) */
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.animate-gradient-pan {
+  background-size: 200% 100%;
+  animation: gradient-pan 3s linear infinite;
+}
 
 ::selection {
   background: var(--color-gold);

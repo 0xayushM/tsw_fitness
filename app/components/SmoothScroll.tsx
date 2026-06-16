@@ -20,7 +20,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Respect users who prefer reduced motion — skip smoother entirely.
+    // Respect users who prefer reduced motion - skip smoother entirely.
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;

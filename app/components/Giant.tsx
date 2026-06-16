@@ -3,14 +3,14 @@ import SplitReveal from "./SplitReveal";
 import Image from "next/image";
 
 /**
- * "The Giant" hero — full-bleed MagicRings shader backdrop with the
+ * "The Giant" hero - full-bleed MagicRings shader backdrop with the
  * flagship-club tagline floating in the middle.
  *
  * Layout:
  *  - Outer section is sized by viewport height so the rings have room to
  *    breathe (clamped via min-h to stay sensible on short screens).
  *  - MagicRings sits absolutely in the back, headings sit on a relative,
- *    z-indexed flex column on top — text is `pointer-events-none` so the
+ *    z-indexed flex column on top - text is `pointer-events-none` so the
  *    canvas underneath still receives mouse events (parallax / hover).
  */
 export default function Giant() {
@@ -44,7 +44,7 @@ export default function Giant() {
           />
         </div>
 
-        {/* Headings overlay — pointer-events-none so the canvas underneath
+        {/* Headings overlay - pointer-events-none so the canvas underneath
             still receives hover/click for parallax + burst effects. */}
         <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-6 px-5 text-center">
           <div className="flex flex-col items-center">

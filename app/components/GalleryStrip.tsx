@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-// Exactly 5 clips per row — the user-requested count.
+// Exactly 5 clips per row - the user-requested count.
 const ROW1 = [
   "/gallery/optimized/IMG_4130.mp4",
   "/gallery/optimized/IMG_4339.mp4",
@@ -56,7 +56,7 @@ function VideoCard({ src }: { src: string }) {
     }
     tryPlay();
 
-    // Pause off-screen, resume on-screen — saves CPU/GPU and works around
+    // Pause off-screen, resume on-screen - saves CPU/GPU and works around
     // mobile autoplay edge cases where the first play() is rejected.
     const io = new IntersectionObserver(
       (entries) => {
@@ -115,7 +115,7 @@ function VideoCard({ src }: { src: string }) {
 /* -------------------------------------------------------------------------- */
 /*  JS-driven rAF animation instead of CSS keyframes:                         */
 /*    1. Measures the real width of one full sequence (so the loop is        */
-/*       pixel-perfect even when `gap` is in play — the old CSS              */
+/*       pixel-perfect even when `gap` is in play - the old CSS              */
 /*       0 → -50% approach was off by exactly one gap).                       */
 /*    2. Pauses the animation when the section is off-screen.                 */
 /*    3. Avoids the GSAP-ScrollSmoother + CSS-animation interaction that     */
@@ -244,13 +244,13 @@ export default function GalleryStrip() {
             <span className="text-brand-gold">Rep. Every Set.</span>
           </h2>
           <p className="max-w-sm font-body text-sm leading-relaxed text-white/50">
-            Every session you see is led by a TSW trainer — programmed,
+            Every session you see is led by a TSW trainer - programmed,
             supervised, and pushed until the work is done right.
           </p>
         </div>
       </div>
 
-      {/* Two-row marquee — opposite directions */}
+      {/* Two-row marquee - opposite directions */}
       <div className="flex flex-col gap-4 pb-16">
         <MarqueeRow clips={ROW1} pxPerSecond={55} />
         <MarqueeRow clips={ROW2} reverse pxPerSecond={45} />

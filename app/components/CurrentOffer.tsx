@@ -3,14 +3,14 @@ import SplitReveal from "./SplitReveal";
 
 /**
  * Reusable "active promotion" slot. When the offer ends, swap OFFER data
- * or remove the component from page.tsx entirely — nothing else needs changing.
+ * or remove the component from page.tsx entirely - nothing else needs changing.
  */
 const OFFER = {
   eyebrow: "Active Offer",
   badge: "Limited Time",
   headline: "This Mother's Day",
   subheadline: "Bollywood Dance\nFitness Session",
-  body: "A fun, coach-led Bollywood session made just for Moms. Gentle stretches, high-energy dance — zero experience needed. Bring Mum, feel amazing.",
+  body: "A fun, coach-led Bollywood session made just for Moms. Gentle stretches, high-energy dance - zero experience needed. Bring Mum, feel amazing.",
   details: [
     { label: "When", value: "Saturday & Sunday" },
     { label: "Timings", value: "4:00–5:00 PM · 5:00–6:00 PM" },
@@ -58,7 +58,7 @@ export default function CurrentOffer() {
 
         {/* Two-col layout: content left, image right */}
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px] lg:gap-16 xl:grid-cols-[1fr_480px]">
-          {/* Left — text content */}
+          {/* Left - text content */}
           <div>
             <p className="font-body text-sm uppercase tracking-[0.35em] text-[var(--color-gold)]/80">
               {OFFER.headline}
@@ -114,7 +114,7 @@ export default function CurrentOffer() {
             </a>
           </div>
 
-          {/* Right — offer image */}
+          {/* Right - offer image */}
           <div className="relative mx-auto w-full max-w-[420px] lg:mx-0">
             {/* Soft glow behind the card */}
             <div

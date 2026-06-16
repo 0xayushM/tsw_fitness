@@ -10,7 +10,7 @@ let motionCoreEaseRegistered = false;
 
 /**
  * Register one or more GSAP plugins exactly once per client session.
- * Safe to call from multiple components — duplicates are skipped.
+ * Safe to call from multiple components - duplicates are skipped.
  */
 export function registerPluginOnce(...plugins: object[]) {
   const unique = plugins.filter((plugin) => !registeredPlugins.has(plugin));

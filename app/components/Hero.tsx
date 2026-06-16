@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black" />
       </div>
 
-      {/* Top-left title block — the Buckler hero positioning */}
+      {/* Top-left title block - the Buckler hero positioning */}
       <div className="relative z-10 flex flex-1 flex-col justify-end md:justify-end px-5 pt-32 pb-10 sm:px-10 sm:pt-40 sm:pb-16">
         <div className="max-w-full">
           <span className="inline-flex items-center gap-2 font-body text-[10px] uppercase tracking-[0.45em] text-[var(--color-gold)]">
@@ -51,7 +51,7 @@ export default function Hero() {
           </h1>
           <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-white/70">
             High-energy training built for real results. 45-minute classes,
-            world-class equipment, coaches who know your name — across four
+            world-class equipment, coaches who know your name - across four
             clubs, every single day.
           </p>
 

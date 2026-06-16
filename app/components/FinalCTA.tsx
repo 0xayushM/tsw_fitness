@@ -5,7 +5,7 @@ import { useState } from "react";
 const FAQS = [
   {
     q: "Which classes work best for a beginner?",
-    a: "Our Move Body and TFC sessions are built with scalable movement patterns. Coaches will regress or progress every movement for you — show up on day one and we'll do the rest.",
+    a: "Our Move Body and TFC sessions are built with scalable movement patterns. Coaches will regress or progress every movement for you - show up on day one and we'll do the rest.",
   },
   {
     q: "How does TSW compare to regular gyms?",
@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "Can a coach help me decide what my body needs?",
-    a: "Yes. Every new member starts with a TSW Check-Up — a one-hour intake covering posture, mobility, strength baselines and goals.",
+    a: "Yes. Every new member starts with a TSW Check-Up - a one-hour intake covering posture, mobility, strength baselines and goals.",
   },
   {
     q: "Do you sell trainer-led programs online?",
@@ -55,7 +55,7 @@ export default function FinalCTA() {
                 </p>
                 <p className="mt-5 max-w-sm font-body text-sm leading-relaxed text-white/70">
                   TSW machines, spaces and programs are all engineered with one
-                  aim — make your training the most productive hour of your
+                  aim - make your training the most productive hour of your
                   day.
                 </p>
               </div>
