@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SplitHover from "./SplitHover";
 import SplitReveal from "./SplitReveal";
 
@@ -66,12 +67,42 @@ export default function Hero() {
                 className="inline-block h-1.5 w-1.5 rounded-full bg-black"
               />
             </a>
+            {/* Desktop (lg+): Our Series */}
             <a
               href="#classes"
-              className="inline-flex items-center gap-3 rounded-full border border-white/25 px-5 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white/80 backdrop-blur transition-colors hover:border-white hover:text-white"
+              className="hidden items-center gap-3 rounded-full border border-white/25 px-5 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-white/80 backdrop-blur transition-colors hover:border-white hover:text-white lg:inline-flex"
             >
               <SplitHover>Our Series</SplitHover>
             </a>
+            {/* Mobile + iPad: 6-Week Challenge - animated gradient border + glow */}
+            <Link
+              href="/challenge"
+              className="group relative inline-flex rounded-full p-[1.5px] lg:hidden"
+            >
+              {/* panning gradient ring */}
+              <span
+                aria-hidden
+                className="animate-gradient-pan absolute inset-0 rounded-full"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(110deg, #ED5D26, #ffb27a, #ff7a3c, #ffb27a, #ED5D26)",
+                }}
+              />
+              {/* soft animated glow */}
+              <span
+                aria-hidden
+                className="animate-gradient-pan absolute inset-0 rounded-full opacity-70 blur-md transition-opacity duration-300 group-hover:opacity-100"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(110deg, #ED5D26, #ffb27a, #ff7a3c, #ffb27a, #ED5D26)",
+                }}
+              />
+              {/* inner pill */}
+              <span className="relative inline-flex items-center gap-3 rounded-full bg-[#0c0c0c] px-5 py-3 font-body text-[11px] uppercase tracking-[0.35em] text-[var(--color-gold)] transition-colors duration-300 group-hover:text-white">
+                <span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-gold)]" />
+                <SplitHover>6-Week Challenge</SplitHover>
+              </span>
+            </Link>
           </div>
         </div>
 
