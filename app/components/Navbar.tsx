@@ -34,12 +34,12 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-5 lg:flex lg:gap-10">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-body text-[11px] uppercase tracking-[0.4em] text-white/80 transition-colors duration-300 hover:text-[var(--color-gold)]"
+                className="whitespace-nowrap font-body text-[11px] uppercase tracking-[0.25em] text-white/80 transition-colors duration-300 hover:text-[var(--color-gold)] lg:tracking-[0.4em]"
               >
                 <SplitHover>{link.label}</SplitHover>
               </a>
@@ -72,14 +72,14 @@ export default function Navbar() {
               }}
             />
             {/* inner pill */}
-            <span className="relative inline-flex items-center gap-2 rounded-full bg-[#0c0c0c] px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)] transition-colors duration-300 group-hover:text-white sm:px-5">
+            <span className="relative inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#0c0c0c] px-4 py-2 font-body text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] transition-colors duration-300 group-hover:text-white sm:px-5 lg:tracking-[0.35em]">
               <span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-gold)]" />
               <SplitHover>6-Week Challenge</SplitHover>
             </span>
           </Link>
           <a
             href="#membership"
-            className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[10px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:px-5"
+            className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:px-5 lg:tracking-[0.35em]"
           >
             <span
               aria-hidden

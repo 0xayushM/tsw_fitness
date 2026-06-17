@@ -6,6 +6,7 @@ import Link from "next/link";
 import SplitReveal from "../components/SplitReveal";
 import SplitHover from "../components/SplitHover";
 import HorizontalTransforms from "../components/HorizontalTransforms";
+import ChallengeModal from "../components/ChallengeModal";
 
 /* ════════════════════════════════════════════════════════════════════════════
    TSW FITNESS - 6-WEEK TRANSFORMATION CHALLENGE  ·  /challenge
@@ -1995,6 +1996,7 @@ export default function ChallengePage() {
       </footer>
 
       <StickyBar />
+      <ChallengeModal />
       </div>
     </div>
   );
